@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "581809386155",
+    "project_id": "habithub-2dd33",
+    "storage_bucket": "habithub-2dd33.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581809386155:android:5aee4b49f053eb61c5bdee",
+        "android_client_info": {
+          "package_name": "com.example.habithub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcOGz71h00bTUwv--0eyjmfd2m_xcwSGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
