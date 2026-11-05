@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- App -->
+    <string name="app_name">HabitHub</string>
+
+    <!-- General -->
+    <string name="language">Taal</string>
+    <string name="english">Engels</string>
+    <string name="afrikaans">Afrikaans</string>
+    <string name="save">Stoor</string>
+    <string name="back">← Terug</string>
+
+    <!-- Navigation -->
+    <string name="home">Tuis</string>
+    <string name="my_habits">My Gewoontes</string>
+    <string name="progress">Vordering</string>
+    <string name="profile">Profiel</string>
+    <string name="settings">Instellings</string>
+
+    <!-- Habits Screen -->
+    <string name="habits_subtitle">Bly konsekwent en hou aan om vordering te maak.</string>
+    <string name="all">Alles</string>
+    <string name="active">Aktief</string>
+    <string name="completed">Voltooi</string>
+    <string name="paused">Gepouseer</string>
+    <string name="create_new_habit">+ Skep nuwe gewoonte</string>
+
+    <!-- Habits Dynamic Content -->
+    <string name="loading_habits">Laai gewoontes...</string>
+    <string name="please_sign_in_again">Meld asseblief weer aan.</string>
+    <string name="could_not_load_habits">Kon nie gewoontes laai nie: %1$s</string>
+    <string name="could_not_open_habit">Kon nie hierdie gewoonte oopmaak nie.</string>
+
+    <string name="no_reminder">Geen herinnering</string>
+    <string name="reminder_time">Herinnering %1$s</string>
+    <string name="no_goal_set">Geen doelwit gestel nie</string>
+    <string name="goal_label">Doelwit: %1$s</string>
+
+    <string name="calculating_streak">Bereken reeks...</string>
+    <string name="day">dag</string>
+    <string name="days">dae</string>
+    <string name="streak_habit_paused">🔥 %1$d %2$s reeks • Gewoonte gepouseer</string>
+    <string name="streak_completed_today">🔥 %1$d %2$s reeks • Vandag voltooi ✓</string>
+    <string name="streak_ready_today">🔥 %1$d %2$s reeks • Gereed vir vandag</string>
+    <string name="habit_currently_paused">Gewoonte is tans gepouseer</string>
+    <string name="completed_today">Vandag voltooi ✓</string>
+    <string name="ready_for_today">Gereed vir vandag</string>
+
+    <!-- Habit Buttons -->
+    <string name="undo">Ontdoen</string>
+    <string name="complete">Voltooi</string>
+    <string name="resume">Hervat</string>
+    <string name="pause">Pouseer</string>
+    <string name="edit">Wysig</string>
+    <string name="delete">Verwyder</string>
+    <string name="cancel">Kanselleer</string>
+
+    <!-- Delete Habit -->
+    <string name="delete_habit">Verwyder gewoonte</string>
+    <string name="delete_habit_message">Verwyder "%1$s"?</string>
+    <string name="habit_deleted">Gewoonte verwyder</string>
+    <string name="could_not_delete_habit">Kon nie gewoonte verwyder nie: %1$s</string>
+    <string name="could_not_delete_habit_history">Kon nie gewoontegeskiedenis verwyder nie: %1$s</string>
+
+    <!-- Complete / Undo -->
+    <string name="completion_undone">Voltooiing ongedaan gemaak</string>
+    <string name="completion_undone_offline">Voltooiing vanlyn ongedaan gemaak — sal sinkroniseer wanneer jy verbind is</string>
+    <string name="could_not_undo_completion">Kon nie voltooiing ongedaan maak nie: %1$s</string>
+    <string name="habit_completed">Gewoonte voltooi ✓</string>
+    <string name="habit_completed_offline">Gewoonte vanlyn voltooi — sal sinkroniseer wanneer jy verbind is</string>
+    <string name="could_not_save_completion">Kon nie voltooiing stoor nie: %1$s</string>
+
+    <!-- Pause / Resume -->
+    <string name="habit_paused">Gewoonte gepouseer</string>
+    <string name="habit_resumed">Gewoonte hervat</string>
+    <string name="habit_resumed_reminder_failed">Gewoonte hervat, maar die herinnering kon nie herstel word nie.</string>
+    <string name="habit_resumed_settings_failed">Gewoonte hervat, maar herinneringinstellings kon nie nagegaan word nie.</string>
+    <string name="could_not_update_habit">Kon nie gewoonte opdateer nie: %1$s</string>
+
+    <!-- Empty Habit States -->
+    <string name="no_active_habits">Jy het geen aktiewe gewoontes nie.</string>
+    <string name="no_completed_habits">Jy het vandag nog geen gewoontes voltooi nie.</string>
+    <string name="no_paused_habits">Jy het geen gepouseerde gewoontes nie.</string>
+    <string name="no_habits_yet">Nog geen gewoontes nie. Skep jou eerste gewoonte!</string>
+
+    <!-- Network / Offline -->
+    <string name="offline_sync">☁ Vanlyn — veranderinge sal sinkroniseer wanneer jy weer aanlyn is</string>
+
+    <!-- Home -->
+    <string name="home_productive_message">Kom ons maak vandag produktief.</string>
+    <string name="day_streak">Dae-reeks</string>
+    <string name="focus_score">Fokustelling</string>
+    <string name="weekly_completion">Weeklikse voltooiing</string>
+    <string name="this_week">Hierdie week</string>
+    <string name="percent_completed">%1$d%% voltooi</string>
+    <string name="todays_schedule">Vandag se skedule</string>
+    <string name="view_my_habits">Bekyk my gewoontes</string>
+
+    <!-- Home Dynamic Text -->
+    <string name="student">Student</string>
+    <string name="good_morning">Goeiemôre, %1$s</string>
+    <string name="good_afternoon">Goeiemiddag, %1$s</string>
+    <string name="good_evening">Goeienaand, %1$s</string>
+    <string name="repeats_label">Herhaal: %1$s</string>
+    <string name="not_completed_yet">○ Nog nie voltooi nie</string>
+    <string name="unable_load_habits">Kan nie jou gewoontes laai nie. Probeer asseblief weer.</string>
+
+    <!-- Progress -->
+    <string name="progress_subtitle">Volg hoe konsekwent jy was.</string>
+    <string name="overall_completion">Algehele voltooiing</string>
+    <string name="progress_start_message">Begin gewoontes voltooi om jou vordering op te bou.</string>
+    <string name="daily_activity">Daaglikse aktiwiteit</string>
+    <string name="category_performance">Kategorieprestasie</string>
+    <string name="no_category_data">Nog geen kategoriedata nie.</string>
+    <string name="habit_statistics">Gewoonte-statistieke</string>
+    <string name="current_streak">Huidige reeks</string>
+    <string name="best_streak">Beste reeks</string>
+    <string name="total_completions">Totale voltooiings</string>
+    <string name="habits_tracked">Gewoontes gevolg</string>
+
+    <!-- Progress Dynamic Text -->
+    <string name="could_not_load_progress">Kon nie vordering laai nie: %1$s</string>
+    <string name="complete_first_habit">Voltooi jou eerste gewoonte om jou vordering te begin bou.</string>
+    <string name="excellent_consistency">Uitstekende konsekwentheid. Hou jou momentum aan die gang!</string>
+    <string name="great_progress">Goeie vordering! Jy bou sterk gewoontes.</string>
+    <string name="making_progress">Jy maak vordering. Hou aan om op te daag.</string>
+    <string name="every_completion_counts">Elke voltooiing tel. Hou aan om jou roetine te bou.</string>
+
+    <!-- Settings -->
+    <string name="settings_subtitle">Verpersoonlik hoe HabitHub vir jou werk.</string>
+    <string name="account">Rekening</string>
+    <string name="display_name">Vertoonnaam</string>
+    <string name="enter_your_name">Voer jou naam in</string>
+    <string name="email_address">E-posadres</string>
+    <string name="habit_preferences">Gewoontevoorkeure</string>
+    <string name="habit_reminders">Gewoonteherinneringe</string>
+    <string name="habit_reminders_description">Ontvang herinneringe vir geskeduleerde gewoontes</string>
+    <string name="motivational_notifications">Motiveringskennisgewings</string>
+    <string name="motivational_notifications_description">Ontvang aanmoediging oor reekse en vordering</string>
+    <string name="weekly_progress_report">Weeklikse vorderingsverslag</string>
+    <string name="weekly_progress_report_description">Wys \'n weeklikse opsomming van gewoonteprestasie</string>
+    <string name="general">Algemeen</string>
+    <string name="start_of_week">Begin van die week</string>
+    <string name="default_habit_category">Verstek-gewoontekategorie</string>
+    <string name="save_changes">Stoor veranderinge</string>
+    <string name="saving">Stoor tans...</string>
+    <string name="save_settings">Stoor instellings</string>
+
+    <!-- Profile -->
+    <string name="tracked">Gevolg</string>
+    <string name="days_streak">Dae-reeks</string>
+    <string name="edit_profile">Wysig profiel                                      ›</string>
+    <string name="notifications">Kennisgewings                                     ›</string>
+    <string name="privacy_security">Privaatheid &amp; sekuriteit                              ›</string>
+    <string name="reminders">Herinneringe                                      ›</string>
+    <string name="support">Ondersteuning</string>
+    <string name="help_center">Hulpsentrum                                        ›</string>
+    <string name="rate_app">Beoordeel die toepassing                            ›</string>
+    <string name="about_habithub">Oor HabitHub                                        ›</string>
+    <string name="view_achievements">Bekyk prestasies</string>
+    <string name="log_out">Meld af</string>
+
+    <!-- Profile Dynamic Content -->
+    <string name="not_signed_in">Nie aangemeld nie</string>
+    <string name="no_email_available">Geen e-pos beskikbaar nie</string>
+
+    <string name="privacy_security_later">Privaatheid &amp; sekuriteit sal later gekoppel word.</string>
+    <string name="habithub_help_center">HabitHub-hulpsentrum</string>
+    <string name="thank_you_supporting">Dankie dat jy HabitHub ondersteun!</string>
+
+    <string name="about_habithub_title">Oor HabitHub</string>
+    <string name="about_habithub_message">HabitHub help studente om konsekwente gewoontes te bou, vordering te volg en akademiese, persoonlike en welstandsdoelwitte te bereik.</string>
+    <string name="ok">OK</string>
+
+    <string name="logout_title">Meld af</string>
+    <string name="logout_confirmation">Is jy seker jy wil afmeld?</string>
+
+    <string name="could_not_load_profile_statistics">Kon nie profielstatistieke laai nie: %1$s</string>
+    <!-- Authentication -->
+    <string name="build_better_habits">Bou beter gewoontes</string>
+    <string name="login">Meld aan</string>
+    <string name="sign_up">Registreer</string>
+    <string name="full_name">Volle naam</string>
+    <string name="enter_full_name">Voer jou volle naam in</string>
+    <string name="password">Wagwoord</string>
+    <string name="enter_password">Voer jou wagwoord in</string>
+    <string name="confirm_password">Bevestig wagwoord</string>
+    <string name="reenter_password">Voer jou wagwoord weer in</string>
+    <string name="forgot_password">Wagwoord vergeet?</string>
+    <string name="sign_in_habithub">Meld aan by HabitHub</string>
+    <string name="create_my_account">Skep my rekening</string>
+    <string name="or_continue_with">OF GAAN VOORT MET</string>
+    <string name="continue_google">Gaan voort met Google</string>
+    <string name="continue_apple">Gaan voort met Apple</string>
+
+    <!-- Authentication Validation -->
+    <string name="email_required">E-pos is verpligtend</string>
+    <string name="valid_email">Voer ’n geldige e-posadres in</string>
+    <string name="password_required">Wagwoord is verpligtend</string>
+    <string name="password_minimum">Wagwoord moet minstens 6 karakters bevat</string>
+    <string name="full_name_required">Volle naam is verpligtend</string>
+    <string name="confirm_password_required">Bevestig asseblief jou wagwoord</string>
+    <string name="passwords_not_match">Wagwoorde stem nie ooreen nie</string>
+    <string name="enter_email_first">Voer eers jou e-posadres in</string>
+
+    <!-- Authentication Status -->
+    <string name="signing_in">Meld tans aan...</string>
+    <string name="creating_account">Skep tans rekening...</string>
+    <string name="account_created_successfully">Rekening suksesvol geskep!</string>
+    <string name="welcome_user">Welkom, %1$s</string>
+    <string name="welcome_back_user">Welkom terug, %1$s</string>
+    <string name="password_reset_sent">Wagwoordherstel-e-pos is gestuur.</string>
+    <string name="account_not_created">Rekening kon nie geskep word nie.</string>
+    <string name="unable_load_account">Kon nie jou rekening laai nie.</string>
+
+    <!-- Google Sign-In -->
+    <string name="google_token_failed">Google-aanmelding kon nie ’n verifikasietoken kry nie.</string>
+    <string name="google_signin_failed">Google-aanmelding het misluk: %1$s</string>
+    <string name="google_signin_not_completed">Google-aanmelding is nie voltooi nie.</string>
+    <string name="google_account_not_loaded">Google-rekening kon nie gelaai word nie.</string>
+    <string name="google_auth_failed">Google-verifikasie het misluk: %1$s</string>
+    <string name="unable_google_signin">Kon nie met Google aanmeld nie.</string>
+    <string name="unable_load_google_account">Kon nie Google-rekening laai nie.</string>
+    <string name="google_profile_create_failed">Google-rekening is aangemeld, maar die profiel kon nie geskep word nie: %1$s</string>
+    <string name="google_profile_load_failed">Google-rekening is aangemeld, maar die profiel kon nie gelaai word nie: %1$s</string>
+    <string name="apple_signin_not_enabled">Apple-aanmelding is nie geaktiveer nie.</string>
+
+    <!-- Authentication / Firestore Errors -->
+    <string name="profile_setup_failed">Rekening is geskep, maar profielopstelling het misluk: %1$s</string>
+    <string name="signed_in_profile_failed">Aangemeld, maar die profiel kon nie gelaai word nie: %1$s</string>
+    <string name="authentication_failed">Verifikasie het misluk.</string>
+    <string name="email_already_exists">’n Rekening met hierdie e-posadres bestaan reeds.</string>
+    <string name="valid_email_address">Voer ’n geldige e-posadres in.</string>
+    <string name="check_password">Kontroleer asseblief jou wagwoord en probeer weer.</string>
+    <string name="incorrect_email_password">Die e-posadres of wagwoord is verkeerd.</string>
+    <string name="unable_connect">Kan nie verbind nie. Kontroleer jou internetverbinding.</string>
+    <!-- Achievements -->
+    <string name="achievements">Prestasies</string>
+    <string name="achievements_subtitle">Vier jou vordering en konsekwentheid.</string>
+    <string name="achievements_loading">Laai tans prestasies...</string>
+    <string name="your_achievements">Jou Prestasies</string>
+    <string name="checking_habithub_progress">Kontroleer tans jou HabitHub-vordering...</string>
+    <string name="sign_in_view_achievements">Meld aan om jou prestasies te sien.</string>
+    <string name="unable_load_achievements">Kan nie prestasies laai nie.</string>
+    <string name="could_not_load_achievement_data">Kon nie prestasiedata laai nie.</string>
+
+    <!-- Achievement Progress -->
+    <string name="achievements_unlocked">%1$d van %2$d prestasies ontsluit</string>
+    <string name="achievement_unlocked">Ontsluit ✓</string>
+
+    <!-- First Step -->
+    <string name="first_step">Eerste Stap</string>
+    <string name="first_step_locked">Voltooi jou eerste gewoonte</string>
+    <string name="first_step_featured">Eerste Stap!</string>
+    <string name="first_step_description">Jy het jou eerste gewoonte voltooi.</string>
+
+    <!-- 7 Day Warrior -->
+    <string name="seven_day_warrior">7-Dae Kryger</string>
+    <string name="seven_day_streak_progress">%1$d/7 dae reeks</string>
+    <string name="seven_day_warrior_featured">7-Dae Kryger!</string>
+    <string name="seven_day_warrior_description">Jy het ’n gewoontereeks van sewe dae volgehou.</string>
+
+    <!-- 14 Day Streak -->
+    <string name="fourteen_day_streak">14-Dae Reeks</string>
+    <string name="fourteen_day_streak_progress">%1$d/14 dae reeks</string>
+    <string name="fourteen_day_streak_featured">14-Dae Reeks!</string>
+    <string name="fourteen_day_streak_description">Uitstekende konsekwentheid. Hou so aan!</string>
+
+    <!-- 30 Day Champion -->
+    <string name="thirty_day_champion">30-Dae Kampioen</string>
+    <string name="thirty_day_streak_progress">%1$d/30 dae reeks</string>
+    <string name="thirty_day_champion_featured">30-Dae Kampioen!</string>
+    <string name="thirty_day_champion_description">’n Ongelooflike gewoontereeks van 30 dae.</string>
+
+    <!-- Academic Star -->
+    <string name="academic_star">Akademiese Ster</string>
+    <string name="academic_consistency_progress">%1$d%% / 80%% akademiese konsekwentheid</string>
+    <string name="academic_star_featured">Akademiese Ster!</string>
+    <string name="academic_star_description">Uitstekende konsekwentheid met akademiese gewoontes.</string>
+
+    <!-- Healthy Student -->
+    <string name="healthy_student">Gesonde Student</string>
+    <string name="health_consistency_progress">%1$d%% / 80%% gesondheidskonsekwentheid</string>
+    <string name="healthy_student_featured">Gesonde Student!</string>
+    <string name="healthy_student_description">Jou gesonde gewoontes lewer goeie resultate.</string>
+
+    <!-- Consistency Master -->
+    <string name="consistency_master">Meester van Konsekwentheid</string>
+    <string name="overall_consistency_progress">%1$d%% / 90%% algehele konsekwentheid</string>
+    <string name="consistency_master_featured">Meester van Konsekwentheid!</string>
+    <string name="consistency_master_description">Fantasties! Jy het 90%% algehele konsekwentheid bereik.</string>
+
+    <!-- Achievement Empty State -->
+    <string name="unlock_first_badge">Voltooi gewoontes om jou eerste kenteken te ontsluit.</string>
+
+    <!-- Achievements XML -->
+    <string name="achievements_unlocked_title">Prestasies Ontsluit</string>
+    <string name="your_badges">Jou Kentekens</string>
+    <string name="complete_habits_unlock_badges">Voltooi gewoontes om kentekens te ontsluit.</string>
+
+    <string name="reach_seven_day_streak">Bereik ’n reeks van 7 dae</string>
+    <string name="reach_fourteen_day_streak">Bereik ’n reeks van 14 dae</string>
+    <string name="reach_thirty_day_streak">Bereik ’n reeks van 30 dae</string>
+
+    <string name="reach_academic_consistency">Bereik 80%% akademiese konsekwentheid</string>
+    <string name="reach_health_consistency">Bereik 80%% konsekwentheid met gesondheid of fiksheid</string>
+    <string name="reach_overall_consistency">Bereik 90%% algehele konsekwentheid</string>
+
+    <string name="view_profile">Bekyk Profiel</string>
+    <string name="notifications_disabled_settings">Kennisgewings is gedeaktiveer. Jy kan dit later in Instellings aktiveer.</string>
+</resources>

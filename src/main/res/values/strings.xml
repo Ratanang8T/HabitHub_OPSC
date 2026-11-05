@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- App -->
+    <string name="app_name">HabitHub</string>
+
+    <!-- Google Sign-In -->
+    <string name="default_web_client_id" translatable="false">581809386155-ij7kfmgc7m04bppe8t82i4s5amgfuhlh.apps.googleusercontent.com</string>
+
+    <!-- General -->
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="afrikaans">Afrikaans</string>
+    <string name="save">Save</string>
+    <string name="back">← Back</string>
+
+    <!-- Navigation -->
+    <string name="home">Home</string>
+    <string name="my_habits">My Habits</string>
+    <string name="progress">Progress</string>
+    <string name="profile">Profile</string>
+    <string name="settings">Settings</string>
+
+    <!-- Habits Screen -->
+    <string name="habits_subtitle">Stay consistent and keep building progress.</string>
+    <string name="all">All</string>
+    <string name="active">Active</string>
+    <string name="completed">Completed</string>
+    <string name="paused">Paused</string>
+    <string name="create_new_habit">+ Create New Habit</string>
+
+    <!-- Habits Dynamic Content -->
+    <string name="loading_habits">Loading habits...</string>
+    <string name="please_sign_in_again">Please sign in again.</string>
+    <string name="could_not_load_habits">Could not load habits: %1$s</string>
+    <string name="could_not_open_habit">Could not open this habit.</string>
+
+    <string name="no_reminder">No reminder</string>
+    <string name="reminder_time">Reminder %1$s</string>
+    <string name="no_goal_set">No goal set</string>
+    <string name="goal_label">Goal: %1$s</string>
+
+    <string name="calculating_streak">Calculating streak...</string>
+    <string name="day">day</string>
+    <string name="days">days</string>
+    <string name="streak_habit_paused">🔥 %1$d %2$s streak • Habit paused</string>
+    <string name="streak_completed_today">🔥 %1$d %2$s streak • Completed today ✓</string>
+    <string name="streak_ready_today">🔥 %1$d %2$s streak • Ready for today</string>
+    <string name="habit_currently_paused">Habit currently paused</string>
+    <string name="completed_today">Completed today ✓</string>
+    <string name="ready_for_today">Ready for today</string>
+
+    <!-- Habit Buttons -->
+    <string name="undo">Undo</string>
+    <string name="complete">Complete</string>
+    <string name="resume">Resume</string>
+    <string name="pause">Pause</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Delete Habit -->
+    <string name="delete_habit">Delete Habit</string>
+    <string name="delete_habit_message">Delete "%1$s"?</string>
+    <string name="habit_deleted">Habit deleted</string>
+    <string name="could_not_delete_habit">Could not delete habit: %1$s</string>
+    <string name="could_not_delete_habit_history">Could not delete habit history: %1$s</string>
+
+    <!-- Complete / Undo -->
+    <string name="completion_undone">Completion undone</string>
+    <string name="completion_undone_offline">Completion undone offline — will sync when connected</string>
+    <string name="could_not_undo_completion">Could not undo completion: %1$s</string>
+    <string name="habit_completed">Habit completed ✓</string>
+    <string name="habit_completed_offline">Habit completed offline — will sync when connected</string>
+    <string name="could_not_save_completion">Could not save completion: %1$s</string>
+
+    <!-- Pause / Resume -->
+    <string name="habit_paused">Habit paused</string>
+    <string name="habit_resumed">Habit resumed</string>
+    <string name="habit_resumed_reminder_failed">Habit resumed, but its reminder could not be restored.</string>
+    <string name="habit_resumed_settings_failed">Habit resumed, but reminder settings could not be checked.</string>
+    <string name="could_not_update_habit">Could not update habit: %1$s</string>
+
+    <!-- Empty Habit States -->
+    <string name="no_active_habits">You don\'t have any active habits.</string>
+    <string name="no_completed_habits">You haven\'t completed any habits today.</string>
+    <string name="no_paused_habits">You don\'t have any paused habits.</string>
+    <string name="no_habits_yet">No habits yet. Create your first habit!</string>
+
+    <!-- Network / Offline -->
+    <string name="offline_sync">☁ Offline — changes will sync when you\'re back online</string>
+
+    <!-- Home -->
+    <string name="home_productive_message">Let\'s make today productive.</string>
+    <string name="day_streak">Day Streak</string>
+    <string name="focus_score">Focus Score</string>
+    <string name="weekly_completion">Weekly Completion</string>
+    <string name="this_week">This Week</string>
+    <string name="percent_completed">%1$d%% completed</string>
+    <string name="todays_schedule">Today\'s Schedule</string>
+    <string name="view_my_habits">View My Habits</string>
+
+    <!-- Home Dynamic Text -->
+    <string name="student">Student</string>
+    <string name="good_morning">Good morning, %1$s</string>
+    <string name="good_afternoon">Good afternoon, %1$s</string>
+    <string name="good_evening">Good evening, %1$s</string>
+    <string name="repeats_label">Repeats: %1$s</string>
+    <string name="not_completed_yet">○ Not completed yet</string>
+    <string name="unable_load_habits">Unable to load your habits. Please try again.</string>
+
+    <!-- Progress -->
+    <string name="progress_subtitle">Track how consistent you\'ve been.</string>
+    <string name="overall_completion">Overall Completion</string>
+    <string name="progress_start_message">Start completing habits to build your progress.</string>
+    <string name="daily_activity">Daily Activity</string>
+    <string name="category_performance">Category Performance</string>
+    <string name="no_category_data">No category data yet.</string>
+    <string name="habit_statistics">Habit Statistics</string>
+    <string name="current_streak">Current Streak</string>
+    <string name="best_streak">Best Streak</string>
+    <string name="total_completions">Total Completions</string>
+    <string name="habits_tracked">Habits Tracked</string>
+
+    <!-- Progress Dynamic Text -->
+    <string name="could_not_load_progress">Could not load progress: %1$s</string>
+    <string name="complete_first_habit">Complete your first habit to start building progress.</string>
+    <string name="excellent_consistency">Excellent consistency. Keep your momentum going!</string>
+    <string name="great_progress">Great progress! You\'re building strong habits.</string>
+    <string name="making_progress">You\'re making progress. Keep showing up.</string>
+    <string name="every_completion_counts">Every completion counts. Keep building your routine.</string>
+
+    <!-- Settings -->
+    <string name="settings_subtitle">Personalize how HabitHub works for you.</string>
+    <string name="account">Account</string>
+    <string name="display_name">Display Name</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="email_address">Email Address</string>
+    <string name="habit_preferences">Habit Preferences</string>
+    <string name="habit_reminders">Habit Reminders</string>
+    <string name="habit_reminders_description">Receive reminders for scheduled habits</string>
+    <string name="motivational_notifications">Motivational Notifications</string>
+    <string name="motivational_notifications_description">Receive streak and progress encouragement</string>
+    <string name="weekly_progress_report">Weekly Progress Report</string>
+    <string name="weekly_progress_report_description">Show a weekly habit performance summary</string>
+    <string name="general">General</string>
+    <string name="start_of_week">Start of Week</string>
+    <string name="default_habit_category">Default Habit Category</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="saving">Saving...</string>
+    <string name="save_settings">Save Settings</string>
+
+    <!-- Profile -->
+    <string name="tracked">Tracked</string>
+    <string name="days_streak">Days Streak</string>
+    <string name="edit_profile">Edit Profile                                      ›</string>
+    <string name="notifications">Notifications                                     ›</string>
+    <string name="privacy_security">Privacy &amp; Security                               ›</string>
+    <string name="reminders">Reminders                                         ›</string>
+    <string name="support">Support</string>
+    <string name="help_center">Help Center                                       ›</string>
+    <string name="rate_app">Rate the App                                      ›</string>
+    <string name="about_habithub">About HabitHub                                    ›</string>
+    <string name="view_achievements">View Achievements</string>
+    <string name="log_out">Log Out</string>
+
+    <!-- Profile Dynamic Content -->
+    <string name="not_signed_in">Not signed in</string>
+    <string name="no_email_available">No email available</string>
+
+    <string name="privacy_security_later">Privacy &amp; Security will be connected later.</string>
+    <string name="habithub_help_center">HabitHub Help Center</string>
+    <string name="thank_you_supporting">Thank you for supporting HabitHub!</string>
+
+    <string name="about_habithub_title">About HabitHub</string>
+    <string name="about_habithub_message">HabitHub helps students build consistent habits, track progress and achieve academic, personal and wellness goals.</string>
+    <string name="ok">OK</string>
+
+    <string name="logout_title">Log Out</string>
+    <string name="logout_confirmation">Are you sure you want to log out?</string>
+
+    <string name="could_not_load_profile_statistics">Could not load profile statistics: %1$s</string>
+    <!-- Authentication -->
+    <string name="build_better_habits">Build Better Habits</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="full_name">Full Name</string>
+    <string name="enter_full_name">Enter your full name</string>
+    <string name="password">Password</string>
+    <string name="enter_password">Enter your password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="reenter_password">Re-enter your password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_in_habithub">Sign In to HabitHub</string>
+    <string name="create_my_account">Create My Account</string>
+    <string name="or_continue_with">OR CONTINUE WITH</string>
+    <string name="continue_google">Continue with Google</string>
+    <string name="continue_apple">Continue with Apple</string>
+
+    <!-- Authentication Validation -->
+    <string name="email_required">Email is required</string>
+    <string name="valid_email">Enter a valid email</string>
+    <string name="password_required">Password is required</string>
+    <string name="password_minimum">Password must contain at least 6 characters</string>
+    <string name="full_name_required">Full name is required</string>
+    <string name="confirm_password_required">Please confirm your password</string>
+    <string name="passwords_not_match">Passwords do not match</string>
+    <string name="enter_email_first">Enter your email first</string>
+
+    <!-- Authentication Status -->
+    <string name="signing_in">Signing In...</string>
+    <string name="creating_account">Creating Account...</string>
+    <string name="account_created_successfully">Account created successfully!</string>
+    <string name="welcome_user">Welcome, %1$s</string>
+    <string name="welcome_back_user">Welcome back, %1$s</string>
+    <string name="password_reset_sent">Password reset email sent.</string>
+    <string name="account_not_created">Account could not be created.</string>
+    <string name="unable_load_account">Unable to load your account.</string>
+
+    <!-- Google Sign-In -->
+    <string name="google_token_failed">Google Sign-In could not retrieve an authentication token.</string>
+    <string name="google_signin_failed">Google Sign-In failed: %1$s</string>
+    <string name="google_signin_not_completed">Google Sign-In was not completed.</string>
+    <string name="google_account_not_loaded">Google account could not be loaded.</string>
+    <string name="google_auth_failed">Google authentication failed: %1$s</string>
+    <string name="unable_google_signin">Unable to sign in with Google.</string>
+    <string name="unable_load_google_account">Unable to load Google account.</string>
+    <string name="google_profile_create_failed">Google account signed in, but the profile could not be created: %1$s</string>
+    <string name="google_profile_load_failed">Google account signed in, but the profile could not be loaded: %1$s</string>
+    <string name="apple_signin_not_enabled">Apple sign in is not enabled.</string>
+
+    <!-- Authentication / Firestore Errors -->
+    <string name="profile_setup_failed">Account created, but profile setup failed: %1$s</string>
+    <string name="signed_in_profile_failed">Signed in, but profile could not be loaded: %1$s</string>
+    <string name="authentication_failed">Authentication failed.</string>
+    <string name="email_already_exists">An account with this email already exists.</string>
+    <string name="valid_email_address">Enter a valid email address.</string>
+    <string name="check_password">Please check your password and try again.</string>
+    <string name="incorrect_email_password">The email or password is incorrect.</string>
+    <string name="unable_connect">Unable to connect. Check your internet connection.</string>
+    <!-- Achievements -->
+    <string name="achievements">Achievements</string>
+    <string name="achievements_subtitle">Celebrate your progress and consistency.</string>
+    <string name="achievements_loading">Loading achievements...</string>
+    <string name="your_achievements">Your Achievements</string>
+    <string name="checking_habithub_progress">Checking your HabitHub progress...</string>
+    <string name="sign_in_view_achievements">Sign in to view achievements.</string>
+    <string name="unable_load_achievements">Unable to load achievements.</string>
+    <string name="could_not_load_achievement_data">Could not load achievement data.</string>
+
+    <!-- Achievement Progress -->
+    <string name="achievements_unlocked">%1$d of %2$d achievements unlocked</string>
+    <string name="achievement_unlocked">Unlocked ✓</string>
+
+    <!-- First Step -->
+    <string name="first_step">First Step</string>
+    <string name="first_step_locked">Complete your first habit</string>
+    <string name="first_step_featured">First Step!</string>
+    <string name="first_step_description">You completed your first habit.</string>
+
+    <!-- 7 Day Warrior -->
+    <string name="seven_day_warrior">7-Day Warrior</string>
+    <string name="seven_day_streak_progress">%1$d/7 day streak</string>
+    <string name="seven_day_warrior_featured">7-Day Warrior!</string>
+    <string name="seven_day_warrior_description">You maintained a seven-day habit streak.</string>
+
+    <!-- 14 Day Streak -->
+    <string name="fourteen_day_streak">14-Day Streak</string>
+    <string name="fourteen_day_streak_progress">%1$d/14 day streak</string>
+    <string name="fourteen_day_streak_featured">14-Day Streak!</string>
+    <string name="fourteen_day_streak_description">Amazing consistency. Keep going!</string>
+
+    <!-- 30 Day Champion -->
+    <string name="thirty_day_champion">30-Day Champion</string>
+    <string name="thirty_day_streak_progress">%1$d/30 day streak</string>
+    <string name="thirty_day_champion_featured">30-Day Champion!</string>
+    <string name="thirty_day_champion_description">An incredible 30-day habit streak.</string>
+
+    <!-- Academic Star -->
+    <string name="academic_star">Academic Star</string>
+    <string name="academic_consistency_progress">%1$d%% / 80%% academic consistency</string>
+    <string name="academic_star_featured">Academic Star!</string>
+    <string name="academic_star_description">Excellent academic habit consistency.</string>
+
+    <!-- Healthy Student -->
+    <string name="healthy_student">Healthy Student</string>
+    <string name="health_consistency_progress">%1$d%% / 80%% health consistency</string>
+    <string name="healthy_student_featured">Healthy Student!</string>
+    <string name="healthy_student_description">Your healthy habits are paying off.</string>
+
+    <!-- Consistency Master -->
+    <string name="consistency_master">Consistency Master</string>
+    <string name="overall_consistency_progress">%1$d%% / 90%% overall consistency</string>
+    <string name="consistency_master_featured">Consistency Master!</string>
+    <string name="consistency_master_description">Amazing! You reached 90%% overall consistency.</string>
+
+    <!-- Achievement Empty State -->
+    <string name="unlock_first_badge">Complete habits to unlock your first badge.</string>
+
+    <!-- Achievements XML -->
+    <string name="achievements_unlocked_title">Achievements Unlocked</string>
+    <string name="your_badges">Your Badges</string>
+    <string name="complete_habits_unlock_badges">Complete habits to unlock badges.</string>
+
+    <string name="reach_seven_day_streak">Reach a 7-day streak</string>
+    <string name="reach_fourteen_day_streak">Reach a 14-day streak</string>
+    <string name="reach_thirty_day_streak">Reach a 30-day streak</string>
+
+    <string name="reach_academic_consistency">Reach 80%% academic consistency</string>
+    <string name="reach_health_consistency">Reach 80%% health or fitness consistency</string>
+    <string name="reach_overall_consistency">Reach 90%% overall consistency</string>
+
+    <string name="view_profile">View Profile</string>
+    <string name="notifications_disabled_settings">Notifications are disabled. You can enable them later in Settings.</string>
+</resources>
