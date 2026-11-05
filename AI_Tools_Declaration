@@ -1,0 +1,41 @@
+# AI Tools Usage Declaration
+
+**Project Name:** HabitHub – Student Habit Tracker  
+**AI Tool Used:** ChatGPT (OpenAI)  
+**Development Environment:** Android Studio  
+**Programming Languages:** Kotlin and XML  
+
+## 1. Introduction and Declaration
+
+During the development of the HabitHub Student Habit Tracker application, our group used ChatGPT, an Artificial Intelligence (AI) tool developed by OpenAI, as a supporting resource throughout various stages of the software development process. The purpose of using AI was to improve our understanding of programming concepts, overcome technical challenges, support feature development and contribute to the successful implementation of the application.
+
+## 2. Areas of AI Assistance
+
+ChatGPT assisted our group with generating and improving Kotlin and XML code, designing user interfaces, identifying programming errors and suggesting debugging solutions. It also provided guidance on integrating Firebase Authentication and Cloud Firestore to support user authentication and data management.
+
+Furthermore, AI assistance was particularly useful when implementing and integrating new features into the existing application. This included understanding how new functionality could connect with existing activities, layouts and application components while maintaining compatibility with the existing codebase.
+
+Specific features where AI provided guidance included:
+
+- Habit creation, editing and daily habit tracking.
+- Reminder scheduling and notifications.
+- Progress analytics and streak calculations.
+- Multilingual functionality, including English, Afrikaans and Tshivenda language resources.
+- Google Sign-In and Firebase Cloud Messaging integration.
+- Application navigation, profile management and settings.
+
+ChatGPT also assisted with Gradle configuration, resolving missing dependencies and setting up GitHub Actions to automate the Android build and unit testing process. Additionally, it supported the preparation of project documentation, including the README file, release notes and testing evidence.
+
+## 3. Learning and Benefits
+
+Using ChatGPT improved our understanding of Android development concepts, Firebase integration, application navigation, feature integration and error handling. Its explanations and step-by-step guidance helped us investigate technical problems, understand possible solutions and implement improvements more efficiently. It also supported the development of our independent problem-solving and technical skills as a group.
+
+## 4. Responsible Use and Limitations
+
+We acknowledge that AI tools can generate incorrect, incomplete or unsuitable information. Therefore, AI-generated suggestions were not automatically accepted. Our group remained responsible for reviewing recommendations, adapting code to the application's requirements, making development decisions and testing the implemented functionality. All final decisions regarding the application's implementation and features remained our responsibility.
+
+## 5. Conclusion
+
+In conclusion, ChatGPT served as a supplementary educational and technical resource throughout the development of HabitHub. It supported our group with programming, feature integration, troubleshooting, testing guidance and documentation. However, responsibility for the final application's implementation, functionality, testing, documentation and submitted work remains with our development team.
+
+**AI Tool:** ChatGPT by OpenAI  
