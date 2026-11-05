@@ -16,9 +16,7 @@
         android:paddingEnd="20dp"
         android:paddingBottom="100dp">
 
-        <!-- ========================= -->
         <!-- HEADER -->
-        <!-- ========================= -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:text="Settings"
+                android:text="@string/settings"
                 android:textColor="#15182A"
                 android:textSize="27sp"
                 android:textStyle="bold" />
@@ -51,19 +49,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Personalize how HabitHub works for you."
+            android:text="@string/settings_subtitle"
             android:textColor="#6F7380"
             android:textSize="13sp" />
 
-        <!-- ========================= -->
         <!-- ACCOUNT -->
-        <!-- ========================= -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="Account"
+            android:text="@string/account"
             android:textColor="#15182A"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -76,12 +72,10 @@
             android:orientation="vertical"
             android:padding="18dp">
 
-            <!-- DISPLAY NAME -->
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Display Name"
+                android:text="@string/display_name"
                 android:textColor="#15182A"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -92,7 +86,7 @@
                 android:layout_height="56dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_input"
-                android:hint="Enter your name"
+                android:hint="@string/enter_your_name"
                 android:importantForAutofill="yes"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
@@ -101,13 +95,11 @@
                 android:textColor="#15182A"
                 android:textColorHint="#747784" />
 
-            <!-- EMAIL -->
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:text="Email Address"
+                android:text="@string/email_address"
                 android:textColor="#15182A"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -129,15 +121,13 @@
 
         </LinearLayout>
 
-        <!-- ========================= -->
         <!-- HABIT PREFERENCES -->
-        <!-- ========================= -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="Habit Preferences"
+            android:text="@string/habit_preferences"
             android:textColor="#15182A"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -171,7 +161,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Habit Reminders"
+                        android:text="@string/habit_reminders"
                         android:textColor="#15182A"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -180,7 +170,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
-                        android:text="Receive reminders for scheduled habits"
+                        android:text="@string/habit_reminders_description"
                         android:textColor="#6F7380"
                         android:textSize="11sp" />
 
@@ -219,7 +209,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Motivational Notifications"
+                        android:text="@string/motivational_notifications"
                         android:textColor="#15182A"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -228,7 +218,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
-                        android:text="Receive streak and progress encouragement"
+                        android:text="@string/motivational_notifications_description"
                         android:textColor="#6F7380"
                         android:textSize="11sp" />
 
@@ -267,7 +257,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Weekly Progress Report"
+                        android:text="@string/weekly_progress_report"
                         android:textColor="#15182A"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -276,7 +266,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
-                        android:text="Show a weekly habit performance summary"
+                        android:text="@string/weekly_progress_report_description"
                         android:textColor="#6F7380"
                         android:textSize="11sp" />
 
@@ -294,15 +284,13 @@
 
         </LinearLayout>
 
-        <!-- ========================= -->
         <!-- GENERAL -->
-        <!-- ========================= -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="General"
+            android:text="@string/general"
             android:textColor="#15182A"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -315,12 +303,33 @@
             android:orientation="vertical"
             android:padding="18dp">
 
-            <!-- WEEK START -->
+            <!-- LANGUAGE -->
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Start of Week"
+                android:text="@string/language"
+                android:textColor="#15182A"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinnerLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_input"
+                android:minHeight="48dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
+
+            <!-- START OF WEEK -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="@string/start_of_week"
                 android:textColor="#15182A"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -341,7 +350,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:text="Default Habit Category"
+                android:text="@string/default_habit_category"
                 android:textColor="#15182A"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -358,9 +367,7 @@
 
         </LinearLayout>
 
-        <!-- ========================= -->
-        <!-- SAVE BUTTON -->
-        <!-- ========================= -->
+        <!-- SAVE -->
 
         <Button
             android:id="@+id/btnSaveSettings"
@@ -369,7 +376,7 @@
             android:layout_marginTop="28dp"
             android:backgroundTint="#5B4CF0"
             android:minHeight="48dp"
-            android:text="Save Changes"
+            android:text="@string/save_changes"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="15sp"

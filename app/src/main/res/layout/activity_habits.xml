@@ -22,7 +22,7 @@
             android:id="@+id/tvBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="← Back"
+            android:text="@string/back"
             android:textColor="#5B4CF0"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="My Habits"
+            android:text="@string/my_habits"
             android:textColor="#15182A"
             android:textSize="28sp"
             android:textStyle="bold" />
@@ -40,9 +40,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Stay consistent and keep building progress."
+            android:text="@string/habits_subtitle"
             android:textColor="#7D8190"
             android:textSize="13sp" />
+
+        <!-- OFFLINE / SYNC STATUS -->
+
+        <TextView
+            android:id="@+id/tvNetworkStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="#FFF3CD"
+            android:gravity="center_vertical"
+            android:paddingStart="14dp"
+            android:paddingTop="11dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="11dp"
+            android:text="@string/offline_sync"
+            android:textColor="#795500"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <!-- FILTERS -->
 
@@ -62,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
                     android:backgroundTint="#5B4CF0"
-                    android:text="All"
+                    android:text="@string/all"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF" />
 
@@ -72,7 +91,7 @@
                     android:layout_height="44dp"
                     android:layout_marginStart="8dp"
                     android:backgroundTint="#ECEAFD"
-                    android:text="Active"
+                    android:text="@string/active"
                     android:textAllCaps="false"
                     android:textColor="#5B4CF0" />
 
@@ -82,7 +101,7 @@
                     android:layout_height="44dp"
                     android:layout_marginStart="8dp"
                     android:backgroundTint="#ECEAFD"
-                    android:text="Completed"
+                    android:text="@string/completed"
                     android:textAllCaps="false"
                     android:textColor="#5B4CF0" />
 
@@ -92,7 +111,7 @@
                     android:layout_height="44dp"
                     android:layout_marginStart="8dp"
                     android:backgroundTint="#ECEAFD"
-                    android:text="Paused"
+                    android:text="@string/paused"
                     android:textAllCaps="false"
                     android:textColor="#5B4CF0" />
 
@@ -117,7 +136,7 @@
             android:layout_height="56dp"
             android:layout_marginTop="24dp"
             android:background="@drawable/bg_primary_button"
-            android:text="+ Create New Habit"
+            android:text="@string/create_new_habit"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="15sp"

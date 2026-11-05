@@ -198,12 +198,16 @@ class ProgressActivity : AppCompatActivity() {
             }
             .addOnFailureListener { exception ->
 
+                val errorMessage =
+                    exception.localizedMessage
+                        ?: "Unknown error"
+
                 Toast.makeText(
                     this,
-                    "Could not load progress: ${
-                        exception.localizedMessage
-                            ?: "Unknown error"
-                    }",
+                    getString(
+                        R.string.could_not_load_progress,
+                        errorMessage
+                    ),
                     Toast.LENGTH_LONG
                 ).show()
 
@@ -326,8 +330,6 @@ class ProgressActivity : AppCompatActivity() {
 
         // =====================================================
         // EXPECTED VS ACTUAL
-        //
-        // Only scheduled days count.
         // =====================================================
 
         var totalExpected =
@@ -380,28 +382,42 @@ class ProgressActivity : AppCompatActivity() {
         tvOverallPercentage.text =
             "$overallPercentage%"
 
+        // =====================================================
+        // TRANSLATED PROGRESS MESSAGE
+        // =====================================================
+
         tvProgressMessage.text =
             when {
 
                 totalCompletions == 0 ->
 
-                    "Complete your first habit to start building progress."
+                    getString(
+                        R.string.complete_first_habit
+                    )
 
                 overallPercentage >= 90 ->
 
-                    "Excellent consistency. Keep your momentum going!"
+                    getString(
+                        R.string.excellent_consistency
+                    )
 
                 overallPercentage >= 70 ->
 
-                    "Great progress! You're building strong habits."
+                    getString(
+                        R.string.great_progress
+                    )
 
                 overallPercentage >= 50 ->
 
-                    "You're making progress. Keep showing up."
+                    getString(
+                        R.string.making_progress
+                    )
 
                 else ->
 
-                    "Every completion counts. Keep building your routine."
+                    getString(
+                        R.string.every_completion_counts
+                    )
             }
 
         // =====================================================
@@ -556,9 +572,6 @@ class ProgressActivity : AppCompatActivity() {
 
     // =========================================================
     // RELEVANT COMPLETIONS
-    //
-    // A completion only counts toward the percentage if the
-    // habit was actually scheduled for that day.
     // =========================================================
 
     private fun countRelevantCompletions(
@@ -609,9 +622,7 @@ class ProgressActivity : AppCompatActivity() {
                             date
                     }
 
-                // =============================================
-                // Ignore abnormal future completion documents.
-                // =============================================
+                // Ignore future completion documents.
 
                 if (
                     calendar.after(
@@ -622,9 +633,7 @@ class ProgressActivity : AppCompatActivity() {
                     return@forEach
                 }
 
-                // =============================================
                 // Ignore completions before habit creation.
-                // =============================================
 
                 if (
                     date.time <
@@ -666,15 +675,6 @@ class ProgressActivity : AppCompatActivity() {
 
     // =========================================================
     // SCHEDULED DAY
-    //
-    // DAILY
-    // → Every day
-    //
-    // WEEKDAYS
-    // → Monday-Friday
-    //
-    // CUSTOM
-    // → Only customDays
     // =========================================================
 
     private fun isScheduledDay(
@@ -693,28 +693,16 @@ class ProgressActivity : AppCompatActivity() {
             )
         ) {
 
-            // =================================================
-            // DAILY
-            // =================================================
-
             "DAILY" ->
-
                 true
 
-            // =================================================
-            // WEEKDAYS
-            // =================================================
-
             "WEEKDAYS" ->
+                dayOfWeek != Calendar.SATURDAY &&
+                        dayOfWeek != Calendar.SUNDAY
 
-                dayOfWeek !=
-                        Calendar.SATURDAY &&
-                        dayOfWeek !=
-                        Calendar.SUNDAY
-
-            // =================================================
-            // CUSTOM
-            // =================================================
+            "WEEKENDS" ->
+                dayOfWeek == Calendar.SATURDAY ||
+                        dayOfWeek == Calendar.SUNDAY
 
             "CUSTOM" -> {
 
@@ -732,18 +720,16 @@ class ProgressActivity : AppCompatActivity() {
                 }
             }
 
-            // =================================================
-            // SAFE FALLBACK FOR OLD HABITS
-            // =================================================
-
             else ->
-
                 true
         }
     }
 
     // =========================================================
     // DAY NAME
+    //
+    // Keep these in English because these are stored values used
+    // by the habit scheduling logic, not visible UI translations.
     // =========================================================
 
     private fun getDayName(
@@ -945,7 +931,6 @@ class ProgressActivity : AppCompatActivity() {
 
         return best
     }
-
     // =========================================================
     // DAILY ACTIVITY GRAPH
     // =========================================================
@@ -1137,6 +1122,9 @@ class ProgressActivity : AppCompatActivity() {
 
                 // =============================================
                 // DAY
+                //
+                // Locale.getDefault() means the graph's day
+                // labels follow the currently selected language.
                 // =============================================
 
                 val label =
@@ -1151,6 +1139,9 @@ class ProgressActivity : AppCompatActivity() {
                             calendars[index].time
                         )
                         .take(1)
+                        .uppercase(
+                            Locale.getDefault()
+                        )
 
                 label.textSize =
                     10f
@@ -1196,11 +1187,17 @@ class ProgressActivity : AppCompatActivity() {
         categoryContainer
             .removeAllViews()
 
+        /*
+         * Keep real category names exactly as they were saved.
+         * Only an empty category receives the translated
+         * "Other" fallback.
+         */
+
         val categories =
             habits
-                .groupBy {
+                .groupBy { habit ->
 
-                    it.category.ifBlank {
+                    habit.category.ifBlank {
                         "Other"
                     }
                 }
@@ -1213,7 +1210,9 @@ class ProgressActivity : AppCompatActivity() {
                 TextView(this)
 
             empty.text =
-                "No category data yet."
+                getString(
+                    R.string.no_category_data
+                )
 
             empty.gravity =
                 Gravity.CENTER
@@ -1436,7 +1435,7 @@ class ProgressActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // RESET
+    // RESET SCREEN
     // =========================================================
 
     private fun resetScreen() {
@@ -1455,7 +1454,9 @@ class ProgressActivity : AppCompatActivity() {
             "0%"
 
         tvProgressMessage.text =
-            "Start completing habits to build your progress."
+            getString(
+                R.string.progress_start_message
+            )
 
         tvCurrentStreak.text =
             "0"
@@ -1479,7 +1480,9 @@ class ProgressActivity : AppCompatActivity() {
             TextView(this)
 
         empty.text =
-            "No category data yet."
+            getString(
+                R.string.no_category_data
+            )
 
         empty.gravity =
             Gravity.CENTER

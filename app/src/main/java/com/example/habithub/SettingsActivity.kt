@@ -3,6 +3,8 @@ package com.example.habithub
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -18,11 +20,16 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var switchMotivation: Switch
     private lateinit var switchWeeklyReport: Switch
 
+    private lateinit var spinnerLanguage: Spinner
     private lateinit var spinnerWeekStart: Spinner
     private lateinit var spinnerDefaultCategory: Spinner
 
     private lateinit var btnSaveSettings: Button
-
+    private val languageOptions =
+        arrayOf(
+            "English",
+            "Afrikaans"
+        )
     private val weekOptions =
         arrayOf(
             "Monday",
@@ -96,7 +103,10 @@ class SettingsActivity : AppCompatActivity() {
             findViewById(
                 R.id.switchWeeklyReport
             )
-
+        spinnerLanguage =
+            findViewById(
+                R.id.spinnerLanguage
+            )
         spinnerWeekStart =
             findViewById(
                 R.id.spinnerWeekStart
@@ -115,7 +125,34 @@ class SettingsActivity : AppCompatActivity() {
         // =====================================================
         // SPINNER DATA
         // =====================================================
+        val languageAdapter =
+            ArrayAdapter(
+                this,
+                android.R.layout.simple_spinner_item,
+                languageOptions
+            )
 
+        languageAdapter.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item
+        )
+
+        spinnerLanguage.adapter =
+            languageAdapter
+
+// Show the language currently being used
+        val currentLanguage =
+            AppCompatDelegate
+                .getApplicationLocales()
+                .toLanguageTags()
+
+        if (currentLanguage.startsWith("af")) {
+
+            spinnerLanguage.setSelection(1)
+
+        } else {
+
+            spinnerLanguage.setSelection(0)
+        }
         val weekAdapter =
             ArrayAdapter(
                 this,
@@ -311,6 +348,10 @@ class SettingsActivity : AppCompatActivity() {
                         "defaultCategory"
                     ) ?: "Academic"
 
+                val savedLanguage =
+                    document.getString(
+                        "language"
+                    ) ?: "en"
                 switchReminders.isChecked =
                     remindersEnabled
 
@@ -319,6 +360,14 @@ class SettingsActivity : AppCompatActivity() {
 
                 switchWeeklyReport.isChecked =
                     weeklyReportEnabled
+                if (savedLanguage == "af") {
+
+                    spinnerLanguage.setSelection(1)
+
+                } else {
+
+                    spinnerLanguage.setSelection(0)
+                }
 
                 val weekPosition =
                     weekOptions.indexOf(
@@ -417,17 +466,30 @@ class SettingsActivity : AppCompatActivity() {
             false
 
         btnSaveSettings.text =
-            "Saving..."
+            getString(R.string.saving)
 
         val remindersEnabled =
             switchReminders.isChecked
+        val selectedLanguage =
+            spinnerLanguage
+                .selectedItem
+                .toString()
 
+        val languageCode =
+            if (selectedLanguage == "Afrikaans") {
+                "af"
+            } else {
+                "en"
+            }
         // =====================================================
         // SETTINGS DATA
         // =====================================================
 
         val settingsData =
             hashMapOf<String, Any>(
+
+                "language" to
+                        languageCode,
 
                 "remindersEnabled" to
                         remindersEnabled,
@@ -653,6 +715,32 @@ class SettingsActivity : AppCompatActivity() {
 
         restoreSaveButton()
 
+        val selectedLanguage =
+            spinnerLanguage
+                .selectedItem
+                .toString()
+
+        val languageCode =
+            if (selectedLanguage == "Afrikaans") {
+                "af"
+            } else {
+                "en"
+            }
+
+        val currentLanguage =
+            AppCompatDelegate
+                .getApplicationLocales()
+                .toLanguageTags()
+
+        if (!currentLanguage.startsWith(languageCode)) {
+
+            AppCompatDelegate.setApplicationLocales(
+                LocaleListCompat.forLanguageTags(
+                    languageCode
+                )
+            )
+        }
+
         val message =
             if (
                 remindersEnabled
@@ -684,6 +772,6 @@ class SettingsActivity : AppCompatActivity() {
             true
 
         btnSaveSettings.text =
-            "Save Settings"
+            getString(R.string.save_settings)
     }
 }

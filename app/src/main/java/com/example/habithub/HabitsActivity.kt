@@ -17,6 +17,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import android.net.ConnectivityManager
+import android.net.Network
+import android.net.NetworkCapabilities
+import android.net.NetworkRequest
 
 class HabitsActivity : AppCompatActivity() {
 
@@ -29,6 +33,48 @@ class HabitsActivity : AppCompatActivity() {
 
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
+    private lateinit var tvNetworkStatus: TextView
+    private lateinit var connectivityManager: ConnectivityManager
+
+    private val networkCallback =
+        object : ConnectivityManager.NetworkCallback() {
+
+            override fun onAvailable(network: Network) {
+                super.onAvailable(network)
+
+                runOnUiThread {
+                    showOnlineStatus()
+                }
+            }
+
+            override fun onLost(network: Network) {
+                super.onLost(network)
+
+                runOnUiThread {
+                    if (!isInternetAvailable()) {
+                        showOfflineStatus()
+                    }
+                }
+            }
+
+            override fun onCapabilitiesChanged(
+                network: Network,
+                networkCapabilities: NetworkCapabilities
+            ) {
+                super.onCapabilitiesChanged(
+                    network,
+                    networkCapabilities
+                )
+
+                runOnUiThread {
+                    if (isInternetAvailable()) {
+                        showOnlineStatus()
+                    } else {
+                        showOfflineStatus()
+                    }
+                }
+            }
+        }
 
     // =========================================================
     // PROGRESS / STREAK REPOSITORY
@@ -103,12 +149,21 @@ class HabitsActivity : AppCompatActivity() {
                 R.id.btnPaused
             )
 
+        tvNetworkStatus =
+            findViewById(
+                R.id.tvNetworkStatus
+            )
+
+        connectivityManager =
+            getSystemService(
+                CONNECTIVITY_SERVICE
+            ) as ConnectivityManager
+
         // =====================================================
         // BACK
         // =====================================================
 
         tvBack.setOnClickListener {
-
             finish()
         }
 
@@ -128,6 +183,9 @@ class HabitsActivity : AppCompatActivity() {
 
         // =====================================================
         // FILTER BUTTONS
+        //
+        // These internal values deliberately stay in English.
+        // They are program logic, not visible translated text.
         // =====================================================
 
         btnAll.setOnClickListener {
@@ -190,6 +248,16 @@ class HabitsActivity : AppCompatActivity() {
 
         super.onResume()
 
+        connectivityManager.registerDefaultNetworkCallback(
+            networkCallback
+        )
+
+        if (isInternetAvailable()) {
+            showOnlineStatus()
+        } else {
+            showOfflineStatus()
+        }
+
         if (
             ::habitsContainer.isInitialized &&
             ::firebaseAuth.isInitialized &&
@@ -198,6 +266,19 @@ class HabitsActivity : AppCompatActivity() {
 
             loadHabits()
         }
+    }
+
+    override fun onPause() {
+
+        try {
+            connectivityManager.unregisterNetworkCallback(
+                networkCallback
+            )
+        } catch (_: Exception) {
+            // Network callback was already removed.
+        }
+
+        super.onPause()
     }
 
     // =========================================================
@@ -217,7 +298,9 @@ class HabitsActivity : AppCompatActivity() {
 
             Toast.makeText(
                 this,
-                "Please sign in again.",
+                getString(
+                    R.string.please_sign_in_again
+                ),
                 Toast.LENGTH_SHORT
             ).show()
 
@@ -234,7 +317,9 @@ class HabitsActivity : AppCompatActivity() {
             TextView(this)
 
         loadingText.text =
-            "Loading habits..."
+            getString(
+                R.string.loading_habits
+            )
 
         loadingText.gravity =
             Gravity.CENTER
@@ -293,7 +378,6 @@ class HabitsActivity : AppCompatActivity() {
                             habit
                         }
                         .sortedByDescending {
-
                             it.createdAt
                         }
 
@@ -367,10 +451,11 @@ class HabitsActivity : AppCompatActivity() {
 
                 Toast.makeText(
                     this,
-                    "Could not load habits: ${
+                    getString(
+                        R.string.could_not_load_habits,
                         exception.localizedMessage
                             ?: "Unknown error"
-                    }",
+                    ),
                     Toast.LENGTH_LONG
                 ).show()
 
@@ -412,14 +497,12 @@ class HabitsActivity : AppCompatActivity() {
                 "COMPLETED" ->
 
                     allHabits.filter {
-
                         it.completed
                     }
 
                 "PAUSED" ->
 
                     allHabits.filter {
-
                         it.paused
                     }
 
@@ -597,7 +680,9 @@ class HabitsActivity : AppCompatActivity() {
             habit.paused -> {
 
                 status.text =
-                    "Paused"
+                    getString(
+                        R.string.paused
+                    )
 
                 status.setTextColor(
                     Color.parseColor(
@@ -615,7 +700,9 @@ class HabitsActivity : AppCompatActivity() {
             habit.completed -> {
 
                 status.text =
-                    "Completed"
+                    getString(
+                        R.string.completed
+                    )
 
                 status.setTextColor(
                     Color.parseColor(
@@ -633,7 +720,9 @@ class HabitsActivity : AppCompatActivity() {
             else -> {
 
                 status.text =
-                    "Active"
+                    getString(
+                        R.string.active
+                    )
 
                 status.setTextColor(
                     Color.parseColor(
@@ -670,13 +759,23 @@ class HabitsActivity : AppCompatActivity() {
                 habit.reminderTime.isBlank()
             ) {
 
-                "No reminder"
+                getString(
+                    R.string.no_reminder
+                )
 
             } else {
 
-                "Reminder ${habit.reminderTime}"
+                getString(
+                    R.string.reminder_time,
+                    habit.reminderTime
+                )
             }
 
+        /*
+         * frequency/customDays are saved application data.
+         * We leave those stored values unchanged so existing
+         * habit scheduling continues to work correctly.
+         */
         val frequencyText =
             if (
                 habit.frequency.equals(
@@ -734,7 +833,9 @@ class HabitsActivity : AppCompatActivity() {
                 habit.unit.isBlank()
             ) {
 
-                "No goal set"
+                getString(
+                    R.string.no_goal_set
+                )
 
             } else {
 
@@ -743,7 +844,10 @@ class HabitsActivity : AppCompatActivity() {
             }
 
         goalText.text =
-            "Goal: $goalDisplay"
+            getString(
+                R.string.goal_label,
+                goalDisplay
+            )
 
         goalText.textSize =
             12f
@@ -773,7 +877,9 @@ class HabitsActivity : AppCompatActivity() {
             TextView(this)
 
         statistics.text =
-            "Calculating streak..."
+            getString(
+                R.string.calculating_streak
+            )
 
         statistics.textSize =
             12f
@@ -816,11 +922,15 @@ class HabitsActivity : AppCompatActivity() {
                             streak == 1
                         ) {
 
-                            "day"
+                            getString(
+                                R.string.day
+                            )
 
                         } else {
 
-                            "days"
+                            getString(
+                                R.string.days
+                            )
                         }
 
                     statistics.text =
@@ -828,15 +938,27 @@ class HabitsActivity : AppCompatActivity() {
 
                             habit.paused ->
 
-                                "🔥 $streak $dayText streak • Habit paused"
+                                getString(
+                                    R.string.streak_habit_paused,
+                                    streak,
+                                    dayText
+                                )
 
                             habit.completed ->
 
-                                "🔥 $streak $dayText streak • Completed today ✓"
+                                getString(
+                                    R.string.streak_completed_today,
+                                    streak,
+                                    dayText
+                                )
 
                             else ->
 
-                                "🔥 $streak $dayText streak • Ready for today"
+                                getString(
+                                    R.string.streak_ready_today,
+                                    streak,
+                                    dayText
+                                )
                         }
                 },
 
@@ -855,15 +977,21 @@ class HabitsActivity : AppCompatActivity() {
 
                             habit.paused ->
 
-                                "Habit currently paused"
+                                getString(
+                                    R.string.habit_currently_paused
+                                )
 
                             habit.completed ->
 
-                                "Completed today ✓"
+                                getString(
+                                    R.string.completed_today
+                                )
 
                             else ->
 
-                                "Ready for today"
+                                getString(
+                                    R.string.ready_for_today
+                                )
                         }
                 }
             )
@@ -907,11 +1035,15 @@ class HabitsActivity : AppCompatActivity() {
                 habit.completed
             ) {
 
-                "Undo"
+                getString(
+                    R.string.undo
+                )
 
             } else {
 
-                "Complete"
+                getString(
+                    R.string.complete
+                )
             }
 
         btnComplete.setTextColor(
@@ -968,11 +1100,15 @@ class HabitsActivity : AppCompatActivity() {
                 habit.paused
             ) {
 
-                "Resume"
+                getString(
+                    R.string.resume
+                )
 
             } else {
 
-                "Pause"
+                getString(
+                    R.string.pause
+                )
             }
 
         btnPause.setTextColor(
@@ -1021,7 +1157,9 @@ class HabitsActivity : AppCompatActivity() {
             )
 
         btnEdit.text =
-            "Edit"
+            getString(
+                R.string.edit
+            )
 
         btnEdit.isAllCaps =
             false
@@ -1047,7 +1185,9 @@ class HabitsActivity : AppCompatActivity() {
             deleteParams
 
         btnDelete.text =
-            "Delete"
+            getString(
+                R.string.delete
+            )
 
         btnDelete.isAllCaps =
             false
@@ -1069,7 +1209,6 @@ class HabitsActivity : AppCompatActivity() {
         card.addView(
             secondaryRow
         )
-
         // =====================================================
         // OPEN DETAILS
         // =====================================================
@@ -1082,7 +1221,9 @@ class HabitsActivity : AppCompatActivity() {
 
                 Toast.makeText(
                     this,
-                    "Could not open this habit.",
+                    getString(
+                        R.string.could_not_open_habit
+                    ),
                     Toast.LENGTH_SHORT
                 ).show()
 
@@ -1162,13 +1303,20 @@ class HabitsActivity : AppCompatActivity() {
             AlertDialog
                 .Builder(this)
                 .setTitle(
-                    "Delete Habit"
+                    getString(
+                        R.string.delete_habit
+                    )
                 )
                 .setMessage(
-                    "Delete \"${habit.name}\"?"
+                    getString(
+                        R.string.delete_habit_message,
+                        habit.name
+                    )
                 )
                 .setPositiveButton(
-                    "Delete"
+                    getString(
+                        R.string.delete
+                    )
                 ) { _, _ ->
 
                     deleteHabit(
@@ -1176,7 +1324,9 @@ class HabitsActivity : AppCompatActivity() {
                     )
                 }
                 .setNegativeButton(
-                    "Cancel",
+                    getString(
+                        R.string.cancel
+                    ),
                     null
                 )
                 .show()
@@ -1204,7 +1354,9 @@ class HabitsActivity : AppCompatActivity() {
 
             Toast.makeText(
                 this,
-                "Please sign in again.",
+                getString(
+                    R.string.please_sign_in_again
+                ),
                 Toast.LENGTH_SHORT
             ).show()
 
@@ -1247,15 +1399,39 @@ class HabitsActivity : AppCompatActivity() {
                 false
             )
 
+            // Update the habit locally.
+            // Firestore queues the write when offline.
+            habit.completed =
+                false
+
             batch
                 .commit()
                 .addOnSuccessListener {
 
-                    Toast.makeText(
-                        this,
-                        "Completion undone",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    if (
+                        isInternetAvailable()
+                    ) {
+
+                        Toast.makeText(
+                            this,
+                            getString(
+                                R.string.completion_undone
+                            ),
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    } else {
+
+                        Toast.makeText(
+                            this,
+                            getString(
+                                R.string.completion_undone_offline
+                            ),
+                            Toast.LENGTH_LONG
+                        ).show()
+
+                        showOfflineStatus()
+                    }
 
                     loadHabits()
                 }
@@ -1263,10 +1439,11 @@ class HabitsActivity : AppCompatActivity() {
 
                     Toast.makeText(
                         this,
-                        "Could not undo completion: ${
+                        getString(
+                            R.string.could_not_undo_completion,
                             exception.localizedMessage
                                 ?: "Unknown error"
-                        }",
+                        ),
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -1304,9 +1481,7 @@ class HabitsActivity : AppCompatActivity() {
             )
 
             // =================================================
-            // IMPORTANT:
-            //
-            // Completing a habit should NOT automatically
+            // Completing a habit must NOT automatically
             // unpause it. Pausing is a separate user choice.
             // =================================================
 
@@ -1316,15 +1491,39 @@ class HabitsActivity : AppCompatActivity() {
                 true
             )
 
+            // Update the habit locally.
+            // Firestore queues the write when offline.
+            habit.completed =
+                true
+
             batch
                 .commit()
                 .addOnSuccessListener {
 
-                    Toast.makeText(
-                        this,
-                        "Habit completed ✓",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    if (
+                        isInternetAvailable()
+                    ) {
+
+                        Toast.makeText(
+                            this,
+                            getString(
+                                R.string.habit_completed
+                            ),
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    } else {
+
+                        Toast.makeText(
+                            this,
+                            getString(
+                                R.string.habit_completed_offline
+                            ),
+                            Toast.LENGTH_LONG
+                        ).show()
+
+                        showOfflineStatus()
+                    }
 
                     loadHabits()
                 }
@@ -1332,10 +1531,11 @@ class HabitsActivity : AppCompatActivity() {
 
                     Toast.makeText(
                         this,
-                        "Could not save completion: ${
+                        getString(
+                            R.string.could_not_save_completion,
                             exception.localizedMessage
                                 ?: "Unknown error"
-                        }",
+                        ),
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -1366,7 +1566,9 @@ class HabitsActivity : AppCompatActivity() {
 
             Toast.makeText(
                 this,
-                "Please sign in again.",
+                getString(
+                    R.string.please_sign_in_again
+                ),
                 Toast.LENGTH_SHORT
             ).show()
 
@@ -1406,7 +1608,9 @@ class HabitsActivity : AppCompatActivity() {
 
                     Toast.makeText(
                         this,
-                        "Habit paused",
+                        getString(
+                            R.string.habit_paused
+                        ),
                         Toast.LENGTH_SHORT
                     ).show()
 
@@ -1444,7 +1648,9 @@ class HabitsActivity : AppCompatActivity() {
 
                             Toast.makeText(
                                 this,
-                                "Habit resumed",
+                                getString(
+                                    R.string.habit_resumed
+                                ),
                                 Toast.LENGTH_SHORT
                             ).show()
 
@@ -1494,7 +1700,9 @@ class HabitsActivity : AppCompatActivity() {
 
                                 Toast.makeText(
                                     this,
-                                    "Habit resumed",
+                                    getString(
+                                        R.string.habit_resumed
+                                    ),
                                     Toast.LENGTH_SHORT
                                 ).show()
 
@@ -1504,7 +1712,9 @@ class HabitsActivity : AppCompatActivity() {
 
                                 Toast.makeText(
                                     this,
-                                    "Habit resumed, but its reminder could not be restored.",
+                                    getString(
+                                        R.string.habit_resumed_reminder_failed
+                                    ),
                                     Toast.LENGTH_LONG
                                 ).show()
 
@@ -1519,7 +1729,9 @@ class HabitsActivity : AppCompatActivity() {
 
                         Toast.makeText(
                             this,
-                            "Habit resumed, but reminder settings could not be checked.",
+                            getString(
+                                R.string.habit_resumed_settings_failed
+                            ),
                             Toast.LENGTH_LONG
                         ).show()
 
@@ -1530,10 +1742,11 @@ class HabitsActivity : AppCompatActivity() {
 
                 Toast.makeText(
                     this,
-                    "Could not update habit: ${
+                    getString(
+                        R.string.could_not_update_habit,
                         exception.localizedMessage
                             ?: "Unknown error"
-                    }",
+                    ),
                     Toast.LENGTH_LONG
                 ).show()
             }
@@ -1556,7 +1769,9 @@ class HabitsActivity : AppCompatActivity() {
 
             Toast.makeText(
                 this,
-                "Please sign in again.",
+                getString(
+                    R.string.please_sign_in_again
+                ),
                 Toast.LENGTH_SHORT
             ).show()
 
@@ -1614,7 +1829,9 @@ class HabitsActivity : AppCompatActivity() {
 
                         Toast.makeText(
                             this,
-                            "Habit deleted",
+                            getString(
+                                R.string.habit_deleted
+                            ),
                             Toast.LENGTH_SHORT
                         ).show()
 
@@ -1624,10 +1841,11 @@ class HabitsActivity : AppCompatActivity() {
 
                         Toast.makeText(
                             this,
-                            "Could not delete habit: ${
+                            getString(
+                                R.string.could_not_delete_habit,
                                 exception.localizedMessage
                                     ?: "Unknown error"
-                            }",
+                            ),
                             Toast.LENGTH_LONG
                         ).show()
                     }
@@ -1636,10 +1854,11 @@ class HabitsActivity : AppCompatActivity() {
 
                 Toast.makeText(
                     this,
-                    "Could not delete habit history: ${
+                    getString(
+                        R.string.could_not_delete_habit_history,
                         exception.localizedMessage
                             ?: "Unknown error"
-                    }",
+                    ),
                     Toast.LENGTH_LONG
                 ).show()
             }
@@ -1661,19 +1880,27 @@ class HabitsActivity : AppCompatActivity() {
 
                 "ACTIVE" ->
 
-                    "You don't have any active habits."
+                    getString(
+                        R.string.no_active_habits
+                    )
 
                 "COMPLETED" ->
 
-                    "You haven't completed any habits today."
+                    getString(
+                        R.string.no_completed_habits
+                    )
 
                 "PAUSED" ->
 
-                    "You don't have any paused habits."
+                    getString(
+                        R.string.no_paused_habits
+                    )
 
                 else ->
 
-                    "No habits yet. Create your first habit!"
+                    getString(
+                        R.string.no_habits_yet
+                    )
             }
 
         message.gravity =
@@ -1760,6 +1987,58 @@ class HabitsActivity : AppCompatActivity() {
                 )
             )
         }
+    }
+
+    // =========================================================
+    // NETWORK STATUS
+    // =========================================================
+
+    private fun isInternetAvailable(): Boolean {
+
+        val activeNetwork =
+            connectivityManager.activeNetwork
+                ?: return false
+
+        val capabilities =
+            connectivityManager.getNetworkCapabilities(
+                activeNetwork
+            ) ?: return false
+
+        return capabilities.hasCapability(
+            NetworkCapabilities.NET_CAPABILITY_INTERNET
+        ) &&
+                capabilities.hasCapability(
+                    NetworkCapabilities.NET_CAPABILITY_VALIDATED
+                )
+    }
+
+    private fun showOfflineStatus() {
+
+        tvNetworkStatus.text =
+            getString(
+                R.string.offline_sync
+            )
+
+        tvNetworkStatus.setTextColor(
+            Color.parseColor(
+                "#795500"
+            )
+        )
+
+        tvNetworkStatus.setBackgroundColor(
+            Color.parseColor(
+                "#FFF3CD"
+            )
+        )
+
+        tvNetworkStatus.visibility =
+            android.view.View.VISIBLE
+    }
+
+    private fun showOnlineStatus() {
+
+        tvNetworkStatus.visibility =
+            android.view.View.GONE
     }
 
     // =========================================================

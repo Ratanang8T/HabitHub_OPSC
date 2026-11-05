@@ -19,13 +19,22 @@ object HabitStatsCalculator {
             frequency.uppercase(Locale.getDefault())
         ) {
 
+            // Every day
             "DAILY" -> true
 
+            // Monday - Friday
             "WEEKDAYS" -> {
                 dayOfWeek != Calendar.SATURDAY &&
                         dayOfWeek != Calendar.SUNDAY
             }
 
+            // Saturday - Sunday
+            "WEEKENDS" -> {
+                dayOfWeek == Calendar.SATURDAY ||
+                        dayOfWeek == Calendar.SUNDAY
+            }
+
+            // User-selected days
             "CUSTOM" -> {
 
                 val dayName =
@@ -73,7 +82,7 @@ object HabitStatsCalculator {
     }
 
     // =========================================================
-    // CALCULATE STREAK
+    // CALCULATE CURRENT STREAK
     //
     // scheduledDates should be ordered:
     // oldest -> newest
@@ -96,12 +105,10 @@ object HabitStatsCalculator {
             return 0
         }
 
-        var streak =
-            0
+        var streak = 0
 
         // Start with the newest scheduled date
         // and move backwards.
-
         for (
         date in scheduledDates.asReversed()
         ) {
@@ -137,11 +144,8 @@ object HabitStatsCalculator {
             return 0
         }
 
-        var currentStreak =
-            0
-
-        var bestStreak =
-            0
+        var currentStreak = 0
+        var bestStreak = 0
 
         scheduledDates.forEach { date ->
 
@@ -161,8 +165,7 @@ object HabitStatsCalculator {
 
             } else {
 
-                currentStreak =
-                    0
+                currentStreak = 0
             }
         }
 

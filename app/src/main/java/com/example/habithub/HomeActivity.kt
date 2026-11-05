@@ -1,8 +1,13 @@
 package com.example.habithub
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
@@ -12,6 +17,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.messaging.FirebaseMessaging
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -19,7 +25,19 @@ import java.util.Locale
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var habitContainer: LinearLayout
+    private val notificationPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted ->
 
+            if (!isGranted) {
+                Toast.makeText(
+                    this,
+                    getString(R.string.notifications_disabled_settings),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
     // =========================================================
     // RETROFIT REST REPOSITORY
     // =========================================================
@@ -49,6 +67,33 @@ class HomeActivity : AppCompatActivity() {
         setContentView(
             R.layout.activity_home
         )
+        requestNotificationPermission()
+        // =====================================================
+        // FIREBASE CLOUD MESSAGING TOKEN
+        // =====================================================
+
+        FirebaseMessaging
+            .getInstance()
+            .token
+            .addOnSuccessListener { token ->
+
+                val user =
+                    FirebaseAuth
+                        .getInstance()
+                        .currentUser
+
+                if (user != null) {
+
+                    FirebaseFirestore
+                        .getInstance()
+                        .collection("users")
+                        .document(user.uid)
+                        .update(
+                            "fcmToken",
+                            token
+                        )
+                }
+            }
 
         // =====================================================
         // XML VIEWS
@@ -92,8 +137,8 @@ class HomeActivity : AppCompatActivity() {
         val savedName =
             userPreferences.getString(
                 "FULL_NAME",
-                "Student"
-            ) ?: "Student"
+                getString(R.string.student)
+            ) ?: getString(R.string.student)
 
         val fullName =
             fullNameFromIntent
@@ -104,7 +149,7 @@ class HomeActivity : AppCompatActivity() {
                 .trim()
                 .split(" ")
                 .firstOrNull()
-                ?: "Student"
+                ?: getString(R.string.student)
 
         tvGreeting.text =
             getGreeting(
@@ -159,7 +204,6 @@ class HomeActivity : AppCompatActivity() {
         if (
             ::habitContainer.isInitialized
         ) {
-
             loadHabits()
         }
     }
@@ -182,21 +226,27 @@ class HomeActivity : AppCompatActivity() {
         return when (hour) {
 
             in 5..11 ->
-                "Good morning, $firstName"
+                getString(
+                    R.string.good_morning,
+                    firstName
+                )
 
             in 12..17 ->
-                "Good afternoon, $firstName"
+                getString(
+                    R.string.good_afternoon,
+                    firstName
+                )
 
             else ->
-                "Good evening, $firstName"
+                getString(
+                    R.string.good_evening,
+                    firstName
+                )
         }
     }
 
     // =========================================================
     // LOAD HABITS
-    //
-    // IMPORTANT:
-    // Habit list still comes through Retrofit + REST.
     // =========================================================
 
     private fun loadHabits() {
@@ -207,7 +257,9 @@ class HomeActivity : AppCompatActivity() {
             TextView(this)
 
         loadingText.text =
-            "Loading habits..."
+            getString(
+                R.string.loading_habits
+            )
 
         loadingText.textSize =
             14f
@@ -241,13 +293,8 @@ class HomeActivity : AppCompatActivity() {
                     isFinishing ||
                     isDestroyed
                 ) {
-
                     return@getHabits
                 }
-
-                // =================================================
-                // EMPTY STATE
-                // =================================================
 
                 if (
                     habits.isEmpty()
@@ -262,10 +309,6 @@ class HomeActivity : AppCompatActivity() {
                     return@getHabits
                 }
 
-                // =================================================
-                // LOAD REAL COMPLETION HISTORY
-                // =================================================
-
                 loadCompletionHistory(
                     habits
                 )
@@ -277,7 +320,6 @@ class HomeActivity : AppCompatActivity() {
                     isFinishing ||
                     isDestroyed
                 ) {
-
                     return@getHabits
                 }
 
@@ -287,7 +329,10 @@ class HomeActivity : AppCompatActivity() {
 
                 Toast.makeText(
                     this,
-                    "Could not load habits: $errorMessage",
+                    getString(
+                        R.string.could_not_load_habits,
+                        errorMessage
+                    ),
                     Toast.LENGTH_LONG
                 ).show()
 
@@ -317,7 +362,9 @@ class HomeActivity : AppCompatActivity() {
 
             Toast.makeText(
                 this,
-                "Please sign in again.",
+                getString(
+                    R.string.please_sign_in_again
+                ),
                 Toast.LENGTH_SHORT
             ).show()
 
@@ -404,16 +451,11 @@ class HomeActivity : AppCompatActivity() {
             isFinishing ||
             isDestroyed
         ) {
-
             return
         }
 
         val today =
             getTodayDate()
-
-        // =====================================================
-        // TODAY'S REAL COMPLETION STATE
-        // =====================================================
 
         habits.forEach { habit ->
 
@@ -428,19 +470,13 @@ class HomeActivity : AppCompatActivity() {
                 )
         }
 
-        // =====================================================
-        // TODAY'S COMPLETED COUNT
-        // =====================================================
-
         val activeHabits =
             habits.filter {
-
                 !it.paused
             }
 
         val completedToday =
             activeHabits.count {
-
                 it.completed
             }
 
@@ -452,18 +488,10 @@ class HomeActivity : AppCompatActivity() {
                 completedToday
         )
 
-        // =====================================================
-        // STREAK + WEEKLY PROGRESS
-        // =====================================================
-
         calculateDashboardProgress(
             habits,
             completionDatesByHabit
         )
-
-        // =====================================================
-        // DISPLAY CARDS
-        // =====================================================
 
         habitContainer.removeAllViews()
 
@@ -507,7 +535,6 @@ class HomeActivity : AppCompatActivity() {
             isFinishing ||
             isDestroyed
         ) {
-
             return
         }
 
@@ -531,10 +558,6 @@ class HomeActivity : AppCompatActivity() {
                 R.id.tvWeeklyProgress
             )
 
-        // =====================================================
-        // OVERALL STREAK
-        // =====================================================
-
         val allCompletionDates =
             completionDatesByHabit
                 .values
@@ -549,19 +572,11 @@ class HomeActivity : AppCompatActivity() {
         tvStreak.text =
             currentStreak.toString()
 
-        // =====================================================
-        // DATE FORMAT
-        // =====================================================
-
         val dateFormat =
             SimpleDateFormat(
                 "yyyy-MM-dd",
                 Locale.getDefault()
             )
-
-        // =====================================================
-        // MONDAY OF CURRENT WEEK
-        // =====================================================
 
         val monday =
             Calendar.getInstance().apply {
@@ -613,10 +628,6 @@ class HomeActivity : AppCompatActivity() {
                 )
             }
 
-        // =====================================================
-        // TODAY
-        // =====================================================
-
         val today =
             Calendar.getInstance().apply {
 
@@ -647,26 +658,13 @@ class HomeActivity : AppCompatActivity() {
         var actualCompletions =
             0
 
-        // =====================================================
-        // EACH HABIT
-        // =====================================================
-
         habits.forEach { habit ->
-
-            // =================================================
-            // PAUSED HABITS
-            // =================================================
 
             if (
                 habit.paused
             ) {
-
                 return@forEach
             }
-
-            // =================================================
-            // CREATION DATE
-            // =================================================
 
             val createdDate =
                 Calendar.getInstance().apply {
@@ -695,13 +693,6 @@ class HomeActivity : AppCompatActivity() {
                     )
                 }
 
-            // =================================================
-            // START FROM THE LATER OF:
-            //
-            // - Monday
-            // - Habit creation date
-            // =================================================
-
             val startDate =
                 if (
                     createdDate.after(
@@ -721,10 +712,6 @@ class HomeActivity : AppCompatActivity() {
             val cursor =
                 startDate.clone()
                         as Calendar
-
-            // =================================================
-            // EXPECTED + ACTUAL
-            // =================================================
 
             while (
                 !cursor.after(
@@ -759,7 +746,6 @@ class HomeActivity : AppCompatActivity() {
                             dateString
                         )
                     ) {
-
                         actualCompletions++
                     }
                 }
@@ -770,10 +756,6 @@ class HomeActivity : AppCompatActivity() {
                 )
             }
         }
-
-        // =====================================================
-        // WEEKLY %
-        // =====================================================
 
         val weeklyPercentage =
             if (
@@ -801,11 +783,10 @@ class HomeActivity : AppCompatActivity() {
             weeklyPercentage
 
         tvWeeklyProgress.text =
-            "$weeklyPercentage% completed"
-
-        // =====================================================
-        // FOCUS SCORE
-        // =====================================================
+            getString(
+                R.string.percent_completed,
+                weeklyPercentage
+            )
 
         tvFocusScore.text =
             "$weeklyPercentage%"
@@ -813,17 +794,6 @@ class HomeActivity : AppCompatActivity() {
 
     // =========================================================
     // IS HABIT EXPECTED ON DATE?
-    //
-    // This is now the central Home frequency calculation.
-    //
-    // DAILY
-    // → Every day
-    //
-    // WEEKDAYS
-    // → Monday-Friday
-    //
-    // CUSTOM
-    // → Only selected customDays
     // =========================================================
 
     private fun isHabitExpectedOnDate(
@@ -842,28 +812,16 @@ class HomeActivity : AppCompatActivity() {
             )
         ) {
 
-            // =================================================
-            // DAILY
-            // =================================================
-
             "DAILY" ->
-
                 true
 
-            // =================================================
-            // WEEKDAYS
-            // =================================================
-
             "WEEKDAYS" ->
+                dayOfWeek != Calendar.SATURDAY &&
+                        dayOfWeek != Calendar.SUNDAY
 
-                dayOfWeek !=
-                        Calendar.SATURDAY &&
-                        dayOfWeek !=
-                        Calendar.SUNDAY
-
-            // =================================================
-            // CUSTOM
-            // =================================================
+            "WEEKENDS" ->
+                dayOfWeek == Calendar.SATURDAY ||
+                        dayOfWeek == Calendar.SUNDAY
 
             "CUSTOM" -> {
 
@@ -881,16 +839,10 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
 
-            // =================================================
-            // SAFE FALLBACK FOR OLD DATA
-            // =================================================
-
             else ->
-
                 true
         }
     }
-
     // =========================================================
     // DAY NAME
     // =========================================================
@@ -940,7 +892,6 @@ class HomeActivity : AppCompatActivity() {
         if (
             completedDates.isEmpty()
         ) {
-
             return 0
         }
 
@@ -957,10 +908,6 @@ class HomeActivity : AppCompatActivity() {
             dateFormat.format(
                 calendar.time
             )
-
-        // =====================================================
-        // If nothing was completed today, start yesterday.
-        // =====================================================
 
         if (
             !completedDates.contains(
@@ -1061,9 +1008,11 @@ class HomeActivity : AppCompatActivity() {
             0
 
         tvWeeklyProgress.text =
-            "0% completed"
+            getString(
+                R.string.percent_completed,
+                0
+            )
     }
-
     // =========================================================
     // HOME HABIT CARD
     // =========================================================
@@ -1144,7 +1093,9 @@ class HomeActivity : AppCompatActivity() {
                 habit.reminderTime.isBlank()
             ) {
 
-                "No reminder"
+                getString(
+                    R.string.no_reminder
+                )
 
             } else {
 
@@ -1183,7 +1134,9 @@ class HomeActivity : AppCompatActivity() {
                 habit.unit.isBlank()
             ) {
 
-                "No goal set"
+                getString(
+                    R.string.no_goal_set
+                )
 
             } else {
 
@@ -1192,7 +1145,10 @@ class HomeActivity : AppCompatActivity() {
             }
 
         goalText.text =
-            "Goal: $goalDisplay"
+            getString(
+                R.string.goal_label,
+                goalDisplay
+            )
 
         goalText.textSize =
             12f
@@ -1212,8 +1168,6 @@ class HomeActivity : AppCompatActivity() {
 
         // =====================================================
         // FREQUENCY
-        //
-        // Custom habits show their selected days.
         // =====================================================
 
         val frequencyText =
@@ -1228,15 +1182,19 @@ class HomeActivity : AppCompatActivity() {
                 ) &&
                         habit.customDays.isNotEmpty() ->
 
-                    "Repeats: ${
+                    getString(
+                        R.string.repeats_label,
                         habit.customDays.joinToString(
                             ", "
                         )
-                    }"
+                    )
 
                 else ->
 
-                    "Repeats: ${habit.frequency}"
+                    getString(
+                        R.string.repeats_label,
+                        habit.frequency
+                    )
             }
 
         frequencyText.textSize =
@@ -1267,15 +1225,21 @@ class HomeActivity : AppCompatActivity() {
 
                 habit.paused ->
 
-                    "⏸ Habit paused"
+                    getString(
+                        R.string.habit_paused
+                    )
 
                 habit.completed ->
 
-                    "✓ Completed today"
+                    getString(
+                        R.string.completed_today
+                    )
 
                 else ->
 
-                    "○ Not completed yet"
+                    getString(
+                        R.string.not_completed_yet
+                    )
             }
 
         status.textSize =
@@ -1353,7 +1317,9 @@ class HomeActivity : AppCompatActivity() {
 
                 Toast.makeText(
                     this,
-                    "Could not open this habit.",
+                    getString(
+                        R.string.could_not_open_habit
+                    ),
                     Toast.LENGTH_SHORT
                 ).show()
 
@@ -1407,7 +1373,9 @@ class HomeActivity : AppCompatActivity() {
             TextView(this)
 
         emptyText.text =
-            "No habits yet. Create your first habit."
+            getString(
+                R.string.no_habits_yet
+            )
 
         emptyText.textSize =
             14f
@@ -1440,7 +1408,9 @@ class HomeActivity : AppCompatActivity() {
             TextView(this)
 
         errorText.text =
-            "Unable to load your habits. Please try again."
+            getString(
+                R.string.unable_load_habits
+            )
 
         errorText.textSize =
             14f
@@ -1462,7 +1432,28 @@ class HomeActivity : AppCompatActivity() {
             errorText
         )
     }
+// =========================================================
+// NOTIFICATION PERMISSION
+// =========================================================
 
+    private fun requestNotificationPermission() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+
+            val permissionGranted =
+                ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED
+
+            if (!permissionGranted) {
+
+                notificationPermissionLauncher.launch(
+                    Manifest.permission.POST_NOTIFICATIONS
+                )
+            }
+        }
+    }
     // =========================================================
     // DP
     // =========================================================

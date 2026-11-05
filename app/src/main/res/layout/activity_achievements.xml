@@ -38,22 +38,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
-                android:text="Achievements"
+                android:text="@string/achievements"
                 android:textColor="#15182A"
                 android:textSize="27sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvAchievementCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="12/20"
+                android:text="0/7"
                 android:textColor="#5B4CF0"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
-        <!-- UNLOCKED PROGRESS -->
+        <!-- ACHIEVEMENT PROGRESS -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,7 +73,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Achievements Unlocked"
+                    android:text="@string/achievements_unlocked_title"
                     android:textColor="#15182A"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -81,7 +82,7 @@
                     android:id="@+id/tvAchievementPercent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="60%"
+                    android:text="0%"
                     android:textColor="#5B4CF0"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -95,21 +96,23 @@
                 android:layout_height="12dp"
                 android:layout_marginTop="14dp"
                 android:max="100"
-                android:progress="60" />
+                android:progress="0" />
 
             <TextView
+                android:id="@+id/tvAchievementSummary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="12 of 20 achievements unlocked"
+                android:text="@string/achievements_loading"
                 android:textColor="#858998"
                 android:textSize="12sp" />
 
         </LinearLayout>
 
-        <!-- BIG STREAK ACHIEVEMENT -->
+        <!-- FEATURED ACHIEVEMENT -->
 
         <LinearLayout
+            android:id="@+id/cardFeaturedAchievement"
             android:layout_width="match_parent"
             android:layout_height="190dp"
             android:layout_marginTop="20dp"
@@ -119,6 +122,7 @@
             android:padding="20dp">
 
             <TextView
+                android:id="@+id/tvFeaturedIcon"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:gravity="center"
@@ -126,20 +130,23 @@
                 android:textSize="42sp" />
 
             <TextView
+                android:id="@+id/tvFeaturedTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="14 Days Habit Streak!"
+                android:gravity="center"
+                android:text="@string/your_achievements"
                 android:textColor="#FFFFFF"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvFeaturedDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                 android:gravity="center"
-                android:text="Amazing consistency. Keep going!"
+                android:text="@string/complete_habits_unlock_badges"
                 android:textColor="#E6E3FF"
                 android:textSize="13sp" />
 
@@ -151,275 +158,349 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="Your Badges"
+            android:text="@string/your_badges"
             android:textColor="#15182A"
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <!-- ROW 1 -->
+        <!-- FIRST STEP -->
 
         <LinearLayout
+            android:id="@+id/cardFirstStep"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:orientation="horizontal">
+            android:alpha="0.55"
+            android:background="@drawable/bg_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="18dp">
 
-            <!-- EARLY BIRD -->
+            <TextView
+                android:id="@+id/iconFirstStep"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:gravity="center"
+                android:text="🔒"
+                android:textSize="31sp" />
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
                 android:layout_weight="1"
-                android:background="@drawable/bg_card"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <TextView
-                    android:layout_width="58dp"
-                    android:layout_height="58dp"
-                    android:gravity="center"
-                    android:text="☀"
-                    android:textSize="34sp" />
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:text="Early Bird"
+                    android:text="@string/first_step"
                     android:textColor="#15182A"
-                    android:textSize="13sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/statusFirstStep"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:gravity="center"
-                    android:text="7 morning habits"
+                    android:text="@string/first_step_locked"
                     android:textColor="#858998"
-                    android:textSize="10sp" />
-
-            </LinearLayout>
-
-            <!-- BOOKWORM -->
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="160dp"
-                android:layout_marginStart="12dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_card"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <TextView
-                    android:layout_width="58dp"
-                    android:layout_height="58dp"
-                    android:gravity="center"
-                    android:text="📖"
-                    android:textSize="34sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:text="Bookworm"
-                    android:textColor="#15182A"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:gravity="center"
-                    android:text="10 study sessions"
-                    android:textColor="#858998"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <!-- ROW 2 -->
+        <!-- 7 DAY WARRIOR -->
 
         <LinearLayout
+            android:id="@+id/cardSevenDay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:orientation="horizontal">
+            android:alpha="0.55"
+            android:background="@drawable/bg_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="18dp">
 
-            <!-- 7 DAY STREAK -->
+            <TextView
+                android:id="@+id/iconSevenDay"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:gravity="center"
+                android:text="🔒"
+                android:textSize="31sp" />
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
                 android:layout_weight="1"
-                android:background="@drawable/bg_card"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <TextView
-                    android:layout_width="58dp"
-                    android:layout_height="58dp"
-                    android:gravity="center"
-                    android:text="🔥"
-                    android:textSize="34sp" />
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:text="7-Day Streak"
+                    android:text="@string/seven_day_warrior"
                     android:textColor="#15182A"
-                    android:textSize="13sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/statusSevenDay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:gravity="center"
-                    android:text="Completed"
-                    android:textColor="#21A78D"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <!-- STUDY MASTER -->
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="160dp"
-                android:layout_marginStart="12dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_card"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <TextView
-                    android:layout_width="58dp"
-                    android:layout_height="58dp"
-                    android:gravity="center"
-                    android:text="🎓"
-                    android:textSize="34sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:text="Study Master"
-                    android:textColor="#15182A"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:gravity="center"
-                    android:text="30 study habits"
+                    android:text="@string/reach_seven_day_streak"
                     android:textColor="#858998"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <!-- ROW 3 -->
+        <!-- 14 DAY STREAK -->
 
         <LinearLayout
+            android:id="@+id/cardFourteenDay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:orientation="horizontal">
+            android:alpha="0.55"
+            android:background="@drawable/bg_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="18dp">
 
-            <!-- FITNESS PRO -->
+            <TextView
+                android:id="@+id/iconFourteenDay"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:gravity="center"
+                android:text="🔒"
+                android:textSize="31sp" />
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
                 android:layout_weight="1"
-                android:background="@drawable/bg_card"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <TextView
-                    android:layout_width="58dp"
-                    android:layout_height="58dp"
-                    android:gravity="center"
-                    android:text="💪"
-                    android:textSize="34sp" />
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:text="Fitness Pro"
+                    android:text="@string/fourteen_day_streak"
                     android:textColor="#15182A"
-                    android:textSize="13sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/statusFourteenDay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:gravity="center"
-                    android:text="20 fitness habits"
+                    android:text="@string/reach_fourteen_day_streak"
                     android:textColor="#858998"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
-            <!-- LOCKED -->
+        </LinearLayout>
+
+        <!-- 30 DAY CHAMPION -->
+
+        <LinearLayout
+            android:id="@+id/cardThirtyDay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:alpha="0.55"
+            android:background="@drawable/bg_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="18dp">
+
+            <TextView
+                android:id="@+id/iconThirtyDay"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:gravity="center"
+                android:text="🔒"
+                android:textSize="31sp" />
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="160dp"
-                android:layout_marginStart="12dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
                 android:layout_weight="1"
-                android:background="@drawable/bg_card"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp"
-                android:alpha="0.55">
-
-                <TextView
-                    android:layout_width="58dp"
-                    android:layout_height="58dp"
-                    android:gravity="center"
-                    android:text="🔒"
-                    android:textSize="32sp" />
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:text="Locked Badge"
+                    android:text="@string/thirty_day_champion"
                     android:textColor="#15182A"
-                    android:textSize="13sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/statusThirtyDay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:gravity="center"
-                    android:text="Keep going"
+                    android:text="@string/reach_thirty_day_streak"
                     android:textColor="#858998"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- ACADEMIC STAR -->
+
+        <LinearLayout
+            android:id="@+id/cardAcademicStar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:alpha="0.55"
+            android:background="@drawable/bg_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="18dp">
+
+            <TextView
+                android:id="@+id/iconAcademicStar"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:gravity="center"
+                android:text="🔒"
+                android:textSize="31sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/academic_star"
+                    android:textColor="#15182A"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/statusAcademicStar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/reach_academic_consistency"
+                    android:textColor="#858998"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- HEALTHY STUDENT -->
+
+        <LinearLayout
+            android:id="@+id/cardHealthyStudent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:alpha="0.55"
+            android:background="@drawable/bg_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="18dp">
+
+            <TextView
+                android:id="@+id/iconHealthyStudent"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:gravity="center"
+                android:text="🔒"
+                android:textSize="31sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/healthy_student"
+                    android:textColor="#15182A"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/statusHealthyStudent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/reach_health_consistency"
+                    android:textColor="#858998"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- CONSISTENCY MASTER -->
+
+        <LinearLayout
+            android:id="@+id/cardConsistencyMaster"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:alpha="0.55"
+            android:background="@drawable/bg_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="18dp">
+
+            <TextView
+                android:id="@+id/iconConsistencyMaster"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:gravity="center"
+                android:text="🔒"
+                android:textSize="31sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/consistency_master"
+                    android:textColor="#15182A"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/statusConsistencyMaster"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/reach_overall_consistency"
+                    android:textColor="#858998"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -433,7 +514,7 @@
             android:layout_height="54dp"
             android:layout_marginTop="28dp"
             android:backgroundTint="#5B4CF0"
-            android:text="View Profile"
+            android:text="@string/view_profile"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="15sp"

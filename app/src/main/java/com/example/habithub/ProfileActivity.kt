@@ -193,7 +193,9 @@ class ProfileActivity : AppCompatActivity() {
 
             Toast.makeText(
                 this,
-                "Privacy & Security will be connected later.",
+                getString(
+                    R.string.privacy_security_later
+                ),
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -206,7 +208,7 @@ class ProfileActivity : AppCompatActivity() {
 
             Toast.makeText(
                 this,
-                "HabitHub Help Center",
+                getString(R.string.habithub_help_center),
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -219,7 +221,7 @@ class ProfileActivity : AppCompatActivity() {
 
             Toast.makeText(
                 this,
-                "Thank you for supporting HabitHub!",
+                getString(R.string.thank_you_supporting),
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -233,13 +235,13 @@ class ProfileActivity : AppCompatActivity() {
             AlertDialog
                 .Builder(this)
                 .setTitle(
-                    "About HabitHub"
+                    getString(R.string.about_habithub_title)
                 )
                 .setMessage(
-                    "HabitHub helps students build consistent habits, track progress and achieve academic, personal and wellness goals."
+                    getString(R.string.about_habithub_message)
                 )
                 .setPositiveButton(
-                    "OK",
+                    getString(R.string.ok),
                     null
                 )
                 .show()
@@ -268,19 +270,19 @@ class ProfileActivity : AppCompatActivity() {
             AlertDialog
                 .Builder(this)
                 .setTitle(
-                    "Log Out"
+                    getString(R.string.logout_title)
                 )
                 .setMessage(
-                    "Are you sure you want to log out?"
+                    getString(R.string.logout_confirmation)
                 )
                 .setPositiveButton(
-                    "Log Out"
+                    getString(R.string.log_out)
                 ) { _, _ ->
 
                     performLogout()
                 }
                 .setNegativeButton(
-                    "Cancel",
+                    getString(R.string.cancel),
                     null
                 )
                 .show()
@@ -328,10 +330,10 @@ class ProfileActivity : AppCompatActivity() {
         ) {
 
             tvProfileName.text =
-                "Student"
+                getString(R.string.student)
 
             tvProfileEmail.text =
-                "Not signed in"
+                getString(R.string.not_signed_in)
 
             tvAvatar.text =
                 "S"
@@ -355,7 +357,7 @@ class ProfileActivity : AppCompatActivity() {
 
             } else {
 
-                "No email available"
+                getString(R.string.no_email_available)
             }
 
         // =====================================================
@@ -390,8 +392,8 @@ class ProfileActivity : AppCompatActivity() {
                     fullName =
                         preferences.getString(
                             "FULL_NAME",
-                            "Student"
-                        ) ?: "Student"
+                            getString(R.string.student)
+                        ) ?: getString(R.string.student)
                 }
 
                 tvProfileName.text =
@@ -412,8 +414,8 @@ class ProfileActivity : AppCompatActivity() {
                 val fullName =
                     preferences.getString(
                         "FULL_NAME",
-                        "Student"
-                    ) ?: "Student"
+                        getString(R.string.student)
+                    ) ?: getString(R.string.student)
 
                 tvProfileName.text =
                     fullName
@@ -521,10 +523,10 @@ class ProfileActivity : AppCompatActivity() {
 
                 Toast.makeText(
                     this,
-                    "Could not load profile statistics: ${
-                        exception.localizedMessage
-                            ?: "Unknown error"
-                    }",
+                    getString(
+                        R.string.could_not_load_profile_statistics,
+                        exception.localizedMessage ?: "Unknown error"
+                    ),
                     Toast.LENGTH_SHORT
                 ).show()
             }
