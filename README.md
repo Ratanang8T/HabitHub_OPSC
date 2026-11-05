@@ -153,15 +153,40 @@ HabitHub/
 
 ## Application Screenshots
 
-Add screenshots demonstrating the following application screens:
+### Main Screen
+![Main Screen](HabitHub_Screenshots/HabitHub.jpeg)
 
-- Login and registration
-- Home screen
-- Habit creation
-- Habit management
-- Progress and statistics
-- Achievements
-- Profile and settings
+### Home Screen
+![Home Screen](HabitHub_Screenshots/HabitHomeScreen.jpeg)
+
+### Login Screen
+![Login Screen](HabitHub_Screenshots/HabitHub_Login.jpeg)
+
+### Create Habit Screen
+![Create Habit](HabitHub_Screenshots/CreateHabit.jpeg)
+
+### Habit Management
+![Habit Management](HabitHub_Screenshots/HabitManagement.jpeg)
+
+### Progress Tracking
+![Habit Progress](HabitHub_Screenshots/HabitProgress.jpeg)
+
+### Settings
+![HabitHub Settings](HabitHub_Screenshots/HabitHub_Settings.jpeg)
+
+### Profile Settings
+![Profile Settings](HabitHub_Screenshots/ProfileSettings.jpeg)
+
+### Registration
+![Sign Up](HabitHub_Screenshots/HabitHub_Sign%20Up.jpeg)
+
+### Language Selection
+![Afrikaans Language](HabitHub_Screenshots/LanguageAfrikaans.jpeg)
+
+![Venda Language](HabitHub_Screenshots/LanguageVenda.jpeg)
+
+### Published Screen
+![Published](HabitHub_Screenshots/Publish.jpeg)
 
 ## Demo Video
 
